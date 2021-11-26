@@ -19,7 +19,7 @@ import java.util.Scanner;
  * Description(描述)： 无
  */
 
-public class Function
+public class Function implements Student_Function
 {
     public static Configuration config;
 
@@ -69,7 +69,8 @@ public class Function
         System.out.printf("已使用的内存：%.4fMB\n", memory);
     }
 
-    public static void insert()
+    @Override
+    public void insert()
     {
         start();
         Scanner input = new Scanner(System.in);
@@ -253,8 +254,8 @@ public class Function
         while (true)
         {
             System.out.print("请输入新的电话号码：");
-            number=input.next();
-            if (number.length()>=12)
+            number = input.next();
+            if (number.length() >= 12)
             {
                 System.out.println("输入错误！电话号码应该最多为11位！请重新输入");
             }
@@ -450,7 +451,8 @@ public class Function
         end();
     }
 
-    public static void display()        //输出
+    @Override
+    public void display()        //输出
     {
         start();
         if (Configuration.list.size() == 0)
@@ -475,7 +477,8 @@ public class Function
         end();
     }
 
-    public static void global_search()
+    @Override
+    public void global_search()
     {
         String keyword;
         Scanner input = new Scanner(System.in);
@@ -500,7 +503,8 @@ public class Function
         System.out.println("一共" + count + "条记录");
     }
 
-    public static void alter()
+    @Override
+    public void alter()
     {
         Scanner input = new Scanner(System.in);
         long no;
@@ -710,7 +714,7 @@ public class Function
                     student.getBirthday(), student.getAddress());
             io.Student.write(config);       //写入到文件
         }
-        else if(serialNumber==3)        //性别
+        else if (serialNumber == 3)        //性别
         {
             String new_sex;
             while (true)
@@ -738,7 +742,7 @@ public class Function
                     student.getBirthday(), student.getAddress());
             io.Student.write(config);       //写入到文件
         }
-        else if (serialNumber ==4)        //年龄
+        else if (serialNumber == 4)        //年龄
         {
             int new_age;
             //控制台输入变量:new_age
@@ -791,11 +795,11 @@ public class Function
                     student.getBirthday(), student.getAddress());
             io.Student.write(config);       //写入到文件
         }
-        else if (serialNumber ==5)          //所在班级
+        else if (serialNumber == 5)          //所在班级
         {
             String new_class;
             System.out.print("请输入新的班级：");
-            new_class=input.next();
+            new_class = input.next();
             student.setClasses(new_class);
             System.out.println("修改成功，新数据如下：");
             System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
@@ -803,7 +807,7 @@ public class Function
                     student.getBirthday(), student.getAddress());
             io.Student.write(config);       //写入到文件
         }
-        else if (serialNumber ==6)           //平均学分绩点
+        else if (serialNumber == 6)           //平均学分绩点
         {
             float new_GPA;
             //控制台输入变量:new_GPA
@@ -856,14 +860,14 @@ public class Function
                     student.getBirthday(), student.getAddress());
             io.Student.write(config);       //写入到文件
         }
-        else if (serialNumber ==7)          //电话号码
+        else if (serialNumber == 7)          //电话号码
         {
             String new_number;
             while (true)
             {
                 System.out.print("请输入新的电话号码：");
-                new_number=input.next();
-                if (new_number.length()>=12)
+                new_number = input.next();
+                if (new_number.length() >= 12)
                 {
                     System.out.println("输入错误！电话号码应该最多为11位！请重新输入");
                 }
@@ -879,7 +883,7 @@ public class Function
                     student.getBirthday(), student.getAddress());
             io.Student.write(config);       //写入到文件
         }
-        else if (serialNumber ==8)          //生日
+        else if (serialNumber == 8)          //生日
         {
             String new_birthday;
             System.out.println("开始输入新的生日信息");
@@ -1025,11 +1029,11 @@ public class Function
                     student.getBirthday(), student.getAddress());
             io.Student.write(config);       //写入到文件
         }
-        else if (serialNumber ==9)          //家庭地址
+        else if (serialNumber == 9)          //家庭地址
         {
             String new_address;
             System.out.print("请输入新的家庭地址：");
-            new_address=input.next();
+            new_address = input.next();
             System.out.println("修改成功，新数据如下：");
             System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
                     student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
@@ -1042,4 +1046,21 @@ public class Function
         }
     }
 
+    @Override
+    public void delete()             //删除
+    {
+
+    }
+
+    @Override
+    public void sort()
+    {
+
+    }
+
+    @Override
+    public void changePassword()
+    {
+
+    }
 }

@@ -17,13 +17,14 @@ public class Unit_Test
 {
     public static void main(String[] args)
     {
+        Function f=new Function();
         System.out.println("""
                 1.学号           2.姓名      3.性别   4.年龄     5.所在班级
                 6.平均学分绩点    7.电话号码   8.生日   9.家庭地址  10.返回到主菜单""");
-        Function.display();
+        f.display();
         Function.config=io.Student.read(Function.config);
        // Function.insert();
-        Function.display();
+        f.display();
         System.out.println("""
                 1.学号  2.姓名  3.性别  4.年龄  5.所在班级  6.平均学分绩点  7.电话号码  8.生日  9.家庭地址  10.返回到主菜单""");
     }
