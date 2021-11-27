@@ -465,11 +465,11 @@ public class Function implements Student_Function
         io.Student.write(config);
         if (isIsAdministrator())             //管理员
         {
-            io.Log.write("管理员","添加学生信息");
+            io.Log.write("管理员", "添加学生信息");
         }
         else                                 //访客
         {
-            io.Log.write("访客","添加学生信息");
+            io.Log.write("访客", "添加学生信息");
         }
         end("添加");
     }
@@ -499,11 +499,11 @@ public class Function implements Student_Function
         }
         if (isIsAdministrator())             //管理员
         {
-            io.Log.write("管理员","查看学生信息");
+            io.Log.write("管理员", "查看学生信息");
         }
         else                                 //访客
         {
-            io.Log.write("访客","查看学生信息");
+            io.Log.write("访客", "查看学生信息");
         }
         end("查看");
     }
@@ -535,11 +535,11 @@ public class Function implements Student_Function
         System.out.println("一共" + count + "条记录");
         if (isIsAdministrator())             //管理员
         {
-            io.Log.write("管理员","使用全局搜索搜索学生信息");
+            io.Log.write("管理员", "使用全局搜索搜索学生信息");
         }
         else                                 //访客
         {
-            io.Log.write("访客","使用全局搜索搜索学生信息");
+            io.Log.write("访客", "使用全局搜索搜索学生信息");
         }
         end("全局搜索");
     }
@@ -1088,11 +1088,11 @@ public class Function implements Student_Function
         }
         if (isIsAdministrator())             //管理员
         {
-            io.Log.write("管理员","修改学生学号为"+no+"的信息  操作序号为"+serialNumber);
+            io.Log.write("管理员", "修改学生学号为" + no + "的信息  操作序号为" + serialNumber);
         }
         else                                 //访客
         {
-            io.Log.write("访客","修改学生学号为"+no+"的信息  操作序号为"+serialNumber);
+            io.Log.write("访客", "修改学生学号为" + no + "的信息  操作序号为" + serialNumber);
         }
     }
 
@@ -1194,11 +1194,11 @@ public class Function implements Student_Function
             //// TODO: 2021/11/27 log
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","删除学生学号为"+no+"的信息");
+                io.Log.write("管理员", "删除学生学号为" + no + "的信息");
             }
             else                                 //访客
             {
-                io.Log.write("访客","删除学生学号为"+no+"的信息");
+                io.Log.write("访客", "删除学生学号为" + no + "的信息");
             }
         }
         else
@@ -1296,11 +1296,11 @@ public class Function implements Student_Function
             System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","按学号升序");
+                io.Log.write("管理员", "按学号升序");
             }
             else                                 //访客
             {
-                io.Log.write("访客","按学号升序");
+                io.Log.write("访客", "按学号升序");
             }
             io.Student.write(config);
         }
@@ -1325,11 +1325,11 @@ public class Function implements Student_Function
             System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","按学号降序");
+                io.Log.write("管理员", "按学号降序");
             }
             else                                 //访客
             {
-                io.Log.write("访客","按学号降序");
+                io.Log.write("访客", "按学号降序");
             }
             io.Student.write(config);
         }
@@ -1361,11 +1361,11 @@ public class Function implements Student_Function
             System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","按姓名升序");
+                io.Log.write("管理员", "按姓名升序");
             }
             else                                 //访客
             {
-                io.Log.write("访客","按姓名升序");
+                io.Log.write("访客", "按姓名升序");
             }
             io.Student.write(config);
         }
@@ -1390,11 +1390,11 @@ public class Function implements Student_Function
             System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","按姓名降序");
+                io.Log.write("管理员", "按姓名降序");
             }
             else                                 //访客
             {
-                io.Log.write("访客","按姓名降序");
+                io.Log.write("访客", "按姓名降序");
             }
             io.Student.write(config);
         }
@@ -1417,11 +1417,11 @@ public class Function implements Student_Function
             System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","按性别升序");
+                io.Log.write("管理员", "按性别升序");
             }
             else                                 //访客
             {
-                io.Log.write("访客","按性别升序");
+                io.Log.write("访客", "按性别升序");
             }
             io.Student.write(config);
         }
@@ -1444,11 +1444,11 @@ public class Function implements Student_Function
             System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","按性别降序");
+                io.Log.write("管理员", "按性别降序");
             }
             else                                 //访客
             {
-                io.Log.write("访客","按性别降序");
+                io.Log.write("访客", "按性别降序");
             }
             io.Student.write(config);
         }
@@ -1471,11 +1471,11 @@ public class Function implements Student_Function
             System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","按年龄升序");
+                io.Log.write("管理员", "按年龄升序");
             }
             else                                 //访客
             {
-                io.Log.write("访客","按年龄升序");
+                io.Log.write("访客", "按年龄升序");
             }
             io.Student.write(config);
         }
@@ -1498,11 +1498,11 @@ public class Function implements Student_Function
             System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","按年龄降序");
+                io.Log.write("管理员", "按年龄降序");
             }
             else                                 //访客
             {
-                io.Log.write("访客","按年龄降序");
+                io.Log.write("访客", "按年龄降序");
             }
             io.Student.write(config);
         }
@@ -1526,11 +1526,11 @@ public class Function implements Student_Function
             System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","按所在班级升序");
+                io.Log.write("管理员", "按所在班级升序");
             }
             else                                 //访客
             {
-                io.Log.write("访客","按所在班级升序");
+                io.Log.write("访客", "按所在班级升序");
             }
             io.Student.write(config);
         }
@@ -1554,11 +1554,11 @@ public class Function implements Student_Function
             System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","按所在班级降序");
+                io.Log.write("管理员", "按所在班级降序");
             }
             else                                 //访客
             {
-                io.Log.write("访客","按所在班级降序");
+                io.Log.write("访客", "按所在班级降序");
             }
             io.Student.write(config);
         }
@@ -1601,11 +1601,11 @@ public class Function implements Student_Function
             System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","按平均学分绩点升序");
+                io.Log.write("管理员", "按平均学分绩点升序");
             }
             else                                 //访客
             {
-                io.Log.write("访客","按平均学分绩点升序");
+                io.Log.write("访客", "按平均学分绩点升序");
             }
             io.Student.write(config);
         }
@@ -1648,11 +1648,11 @@ public class Function implements Student_Function
             System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","按平均学分绩点降序");
+                io.Log.write("管理员", "按平均学分绩点降序");
             }
             else                                 //访客
             {
-                io.Log.write("访客","按平均学分绩点降序");
+                io.Log.write("访客", "按平均学分绩点降序");
             }
             io.Student.write(config);
         }
@@ -1676,11 +1676,11 @@ public class Function implements Student_Function
             System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","按电话号码升序");
+                io.Log.write("管理员", "按电话号码升序");
             }
             else                                 //访客
             {
-                io.Log.write("访客","按电话号码升序");
+                io.Log.write("访客", "按电话号码升序");
             }
             io.Student.write(config);
         }
@@ -1704,11 +1704,11 @@ public class Function implements Student_Function
             System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","按电话号码降序");
+                io.Log.write("管理员", "按电话号码降序");
             }
             else                                 //访客
             {
-                io.Log.write("访客","按电话号码降序");
+                io.Log.write("访客", "按电话号码降序");
             }
             io.Student.write(config);
         }
@@ -1732,11 +1732,11 @@ public class Function implements Student_Function
             System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","按生日升序");
+                io.Log.write("管理员", "按生日升序");
             }
             else                                 //访客
             {
-                io.Log.write("访客","按生日升序");
+                io.Log.write("访客", "按生日升序");
             }
             io.Student.write(config);
         }
@@ -1760,11 +1760,11 @@ public class Function implements Student_Function
             System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","按生日降序");
+                io.Log.write("管理员", "按生日降序");
             }
             else                                 //访客
             {
-                io.Log.write("访客","按生日降序");
+                io.Log.write("访客", "按生日降序");
             }
             io.Student.write(config);
         }
@@ -1788,11 +1788,11 @@ public class Function implements Student_Function
             System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","按家庭地址升序");
+                io.Log.write("管理员", "按家庭地址升序");
             }
             else                                 //访客
             {
-                io.Log.write("访客","按家庭地址升序");
+                io.Log.write("访客", "按家庭地址升序");
             }
             io.Student.write(config);
         }
@@ -1816,15 +1816,47 @@ public class Function implements Student_Function
             System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","按家庭地址降序");
+                io.Log.write("管理员", "按家庭地址降序");
             }
             else                                 //访客
             {
-                io.Log.write("访客","按家庭地址降序");
+                io.Log.write("访客", "按家庭地址降序");
             }
             io.Student.write(config);
         }
         end("排序");
+    }
+
+    public static void Welcome()
+    {
+        System.out.println("------欢迎使用学生信息管理系统------");
+        System.out.println("作者：mao     2021年11月27日");
+        System.out.println("检测到程序第一次运行，请配置用户和密码");
+        System.out.println("注意：请不要修改相对路径下的某些文件！！！");
+        System.out.println("即将登录的用户名：" + System.getProperty("user.name"));
+        String password;
+        System.out.print("请输入密码:");
+        Console console = System.console();
+        if (console == null)
+        {
+            Scanner input = new Scanner(System.in);
+            password = input.next();
+            System.out.println("密码:" + password);
+        }
+        else
+        {
+            password = new String(console.readPassword());
+            System.out.println("密码:" + password);
+        }
+        data.Configuration configuration = new data.Configuration();
+        String username_MD5 = SHA.MD5.getMD5(System.getProperty("user.name"));
+        String password_SHA3_512 = SHA.SHA3_512.getSHA3_512(password);
+        configuration.setUsername_MD5(username_MD5);
+        configuration.setPassword_SHA3_512(password_SHA3_512);
+        System.out.println("配置完成");
+        Function.config = configuration;
+        io.Configuration.write(config);
+        io.Student.write(config);            //写空数据,保证同步
     }
 
     @Override
@@ -1855,11 +1887,11 @@ public class Function implements Student_Function
             System.out.println("密码已更新");
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","修改密码");
+                io.Log.write("管理员", "修改密码");
             }
             else                                 //访客
             {
-                io.Log.write("访客","修改密码");
+                io.Log.write("访客", "修改密码");
             }
         }
         else
@@ -1991,11 +2023,11 @@ public class Function implements Student_Function
             }
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","查找学号");
+                io.Log.write("管理员", "查找学号");
             }
             else                                 //访客
             {
-                io.Log.write("访客","查找学号");
+                io.Log.write("访客", "查找学号");
             }
         }
         else if (serialNumber == 2)
@@ -2027,11 +2059,11 @@ public class Function implements Student_Function
             }
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","查找姓名");
+                io.Log.write("管理员", "查找姓名");
             }
             else                                 //访客
             {
-                io.Log.write("访客","查找姓名");
+                io.Log.write("访客", "查找姓名");
             }
         }
         else if (serialNumber == 3)
@@ -2064,11 +2096,11 @@ public class Function implements Student_Function
             }
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","查找性别");
+                io.Log.write("管理员", "查找性别");
             }
             else                                 //访客
             {
-                io.Log.write("访客","查找性别");
+                io.Log.write("访客", "查找性别");
             }
         }
         else if (serialNumber == 4)
@@ -2141,11 +2173,11 @@ public class Function implements Student_Function
             }
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","查找年龄");
+                io.Log.write("管理员", "查找年龄");
             }
             else                                 //访客
             {
-                io.Log.write("访客","查找年龄");
+                io.Log.write("访客", "查找年龄");
             }
         }
         else if (serialNumber == 5)
@@ -2177,11 +2209,11 @@ public class Function implements Student_Function
             }
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","查找班级");
+                io.Log.write("管理员", "查找班级");
             }
             else                                 //访客
             {
-                io.Log.write("访客","查找班级");
+                io.Log.write("访客", "查找班级");
             }
         }
         else if (serialNumber == 6)
@@ -2254,11 +2286,11 @@ public class Function implements Student_Function
             }
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","查找平均学分绩点");
+                io.Log.write("管理员", "查找平均学分绩点");
             }
             else                                 //访客
             {
-                io.Log.write("访客","查找平均学分绩点");
+                io.Log.write("访客", "查找平均学分绩点");
             }
         }
         else if (serialNumber == 7)
@@ -2290,11 +2322,11 @@ public class Function implements Student_Function
             }
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","查找电话号码");
+                io.Log.write("管理员", "查找电话号码");
             }
             else                                 //访客
             {
-                io.Log.write("访客","查找电话号码");
+                io.Log.write("访客", "查找电话号码");
             }
         }
         else if (serialNumber == 8)
@@ -2460,11 +2492,11 @@ public class Function implements Student_Function
             }
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","查找生日");
+                io.Log.write("管理员", "查找生日");
             }
             else                                 //访客
             {
-                io.Log.write("访客","查找生日");
+                io.Log.write("访客", "查找生日");
             }
         }
         else
@@ -2497,11 +2529,11 @@ public class Function implements Student_Function
             }
             if (isIsAdministrator())             //管理员
             {
-                io.Log.write("管理员","查找家庭地址");
+                io.Log.write("管理员", "查找家庭地址");
             }
             else                                 //访客
             {
-                io.Log.write("访客","查找家庭地址");
+                io.Log.write("访客", "查找家庭地址");
             }
         }
     }
