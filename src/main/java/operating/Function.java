@@ -1099,6 +1099,12 @@ public class Function implements Student_Function
     @Override
     public void delete()             //删除
     {
+        if (Configuration.list.size() == 0)
+        {
+            Toolkit.getDefaultToolkit().beep();
+            System.out.println("空");
+            return;
+        }
         Scanner input = new Scanner(System.in);
         long no;
         //控制台输入变量:no
@@ -1275,7 +1281,19 @@ public class Function implements Student_Function
                 }
             });
             System.out.println("排序完成！结果如下：");
-            this.display();            //显示
+            //this.display();            //显示      //和日志起冲突
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", "学号", "姓名",
+                    "性别", "年龄", "所在班级", "平均学分绩点", "电话号码",
+                    "生日", "家庭地址");
+            int count = 0;
+            for (Student student : Configuration.list)
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
                 io.Log.write("管理员","按学号升序");
@@ -1292,7 +1310,19 @@ public class Function implements Student_Function
             //lambda表达式
             Collections.sort(data.Configuration.list, (student1, student2) -> (int) (student2.getNo() - student1.getNo()));
             System.out.println("排序完成！结果如下：");
-            this.display();            //显示
+            //this.display();            //显示
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", "学号", "姓名",
+                    "性别", "年龄", "所在班级", "平均学分绩点", "电话号码",
+                    "生日", "家庭地址");
+            int count = 0;
+            for (Student student : Configuration.list)
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
                 io.Log.write("管理员","按学号降序");
@@ -1316,7 +1346,19 @@ public class Function implements Student_Function
                 }
             });
             System.out.println("排序完成！结果如下：");
-            this.display();            //显示
+            //this.display();            //显示
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", "学号", "姓名",
+                    "性别", "年龄", "所在班级", "平均学分绩点", "电话号码",
+                    "生日", "家庭地址");
+            int count = 0;
+            for (Student student : Configuration.list)
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
                 io.Log.write("管理员","按姓名升序");
@@ -1333,7 +1375,19 @@ public class Function implements Student_Function
             Configuration.list.sort((student1, student2) ->
                     (student2.getName().compareTo(student1.getName())));
             System.out.println("排序完成！结果如下：");
-            this.display();            //显示
+            //this.display();            //显示
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", "学号", "姓名",
+                    "性别", "年龄", "所在班级", "平均学分绩点", "电话号码",
+                    "生日", "家庭地址");
+            int count = 0;
+            for (Student student : Configuration.list)
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
                 io.Log.write("管理员","按姓名降序");
@@ -1348,7 +1402,19 @@ public class Function implements Student_Function
         {
             Collections.sort(Configuration.list, Comparator.comparing(Student::getSex));
             System.out.println("排序完成！结果如下：");
-            this.display();            //显示
+            //this.display();            //显示
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", "学号", "姓名",
+                    "性别", "年龄", "所在班级", "平均学分绩点", "电话号码",
+                    "生日", "家庭地址");
+            int count = 0;
+            for (Student student : Configuration.list)
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
                 io.Log.write("管理员","按性别升序");
@@ -1363,7 +1429,19 @@ public class Function implements Student_Function
         {
             Collections.sort(Configuration.list, (student1, student2) -> student2.getSex().compareTo(student1.getSex()));
             System.out.println("排序完成！结果如下：");
-            this.display();            //显示
+            //this.display();            //显示
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", "学号", "姓名",
+                    "性别", "年龄", "所在班级", "平均学分绩点", "电话号码",
+                    "生日", "家庭地址");
+            int count = 0;
+            for (Student student : Configuration.list)
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
                 io.Log.write("管理员","按性别降序");
@@ -1378,7 +1456,19 @@ public class Function implements Student_Function
         {
             Collections.sort(Configuration.list, (student1, student2) -> student1.getAge() - student2.getAge());
             System.out.println("排序完成！结果如下：");
-            this.display();            //显示
+            //this.display();            //显示
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", "学号", "姓名",
+                    "性别", "年龄", "所在班级", "平均学分绩点", "电话号码",
+                    "生日", "家庭地址");
+            int count = 0;
+            for (Student student : Configuration.list)
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
                 io.Log.write("管理员","按年龄升序");
@@ -1393,7 +1483,19 @@ public class Function implements Student_Function
         {
             Collections.sort(Configuration.list, (student1, student2) -> student2.getAge() - student1.getAge());
             System.out.println("排序完成！结果如下：");
-            this.display();            //显示
+            //this.display();            //显示
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", "学号", "姓名",
+                    "性别", "年龄", "所在班级", "平均学分绩点", "电话号码",
+                    "生日", "家庭地址");
+            int count = 0;
+            for (Student student : Configuration.list)
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
                 io.Log.write("管理员","按年龄降序");
@@ -1409,7 +1511,19 @@ public class Function implements Student_Function
             Collections.sort(Configuration.list, (student1, student2) ->
                     student1.getClasses().compareTo(student2.getClasses()));
             System.out.println("排序完成！结果如下：");
-            this.display();            //显示
+            //this.display();            //显示
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", "学号", "姓名",
+                    "性别", "年龄", "所在班级", "平均学分绩点", "电话号码",
+                    "生日", "家庭地址");
+            int count = 0;
+            for (Student student : Configuration.list)
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
                 io.Log.write("管理员","按所在班级升序");
@@ -1425,7 +1539,19 @@ public class Function implements Student_Function
             Collections.sort(Configuration.list, (student1, student2) ->
                     student2.getClasses().compareTo(student1.getClasses()));
             System.out.println("排序完成！结果如下：");
-            this.display();            //显示
+            //this.display();            //显示
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", "学号", "姓名",
+                    "性别", "年龄", "所在班级", "平均学分绩点", "电话号码",
+                    "生日", "家庭地址");
+            int count = 0;
+            for (Student student : Configuration.list)
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
                 io.Log.write("管理员","按所在班级降序");
@@ -1460,7 +1586,19 @@ public class Function implements Student_Function
                 }
             });
             System.out.println("排序完成！结果如下：");
-            this.display();            //显示
+            //this.display();            //显示
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", "学号", "姓名",
+                    "性别", "年龄", "所在班级", "平均学分绩点", "电话号码",
+                    "生日", "家庭地址");
+            int count = 0;
+            for (Student student : Configuration.list)
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
                 io.Log.write("管理员","按平均学分绩点升序");
@@ -1495,7 +1633,19 @@ public class Function implements Student_Function
                 }
             });
             System.out.println("排序完成！结果如下：");
-            this.display();            //显示
+            //this.display();            //显示
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", "学号", "姓名",
+                    "性别", "年龄", "所在班级", "平均学分绩点", "电话号码",
+                    "生日", "家庭地址");
+            int count = 0;
+            for (Student student : Configuration.list)
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
                 io.Log.write("管理员","按平均学分绩点降序");
@@ -1511,7 +1661,19 @@ public class Function implements Student_Function
             Collections.sort(Configuration.list, (student1, student2) ->
                     student1.getNumber().compareTo(student2.getNumber()));
             System.out.println("排序完成！结果如下：");
-            this.display();            //显示
+            //this.display();            //显示
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", "学号", "姓名",
+                    "性别", "年龄", "所在班级", "平均学分绩点", "电话号码",
+                    "生日", "家庭地址");
+            int count = 0;
+            for (Student student : Configuration.list)
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
                 io.Log.write("管理员","按电话号码升序");
@@ -1527,7 +1689,19 @@ public class Function implements Student_Function
             Collections.sort(Configuration.list, (student1, student2) ->
                     student2.getNumber().compareTo(student1.getNumber()));
             System.out.println("排序完成！结果如下：");
-            this.display();            //显示
+            //this.display();            //显示
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", "学号", "姓名",
+                    "性别", "年龄", "所在班级", "平均学分绩点", "电话号码",
+                    "生日", "家庭地址");
+            int count = 0;
+            for (Student student : Configuration.list)
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
                 io.Log.write("管理员","按电话号码降序");
@@ -1543,7 +1717,19 @@ public class Function implements Student_Function
             Collections.sort(Configuration.list, (student1, student2) ->
                     student1.getBirthday().compareTo(student2.getBirthday()));
             System.out.println("排序完成！结果如下：");
-            this.display();            //显示
+            //this.display();            //显示
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", "学号", "姓名",
+                    "性别", "年龄", "所在班级", "平均学分绩点", "电话号码",
+                    "生日", "家庭地址");
+            int count = 0;
+            for (Student student : Configuration.list)
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
                 io.Log.write("管理员","按生日升序");
@@ -1559,7 +1745,19 @@ public class Function implements Student_Function
             Collections.sort(Configuration.list, (student1, student2) ->
                     student2.getBirthday().compareTo(student1.getBirthday()));
             System.out.println("排序完成！结果如下：");
-            this.display();            //显示
+            //this.display();            //显示
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", "学号", "姓名",
+                    "性别", "年龄", "所在班级", "平均学分绩点", "电话号码",
+                    "生日", "家庭地址");
+            int count = 0;
+            for (Student student : Configuration.list)
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
                 io.Log.write("管理员","按生日降序");
@@ -1575,7 +1773,19 @@ public class Function implements Student_Function
             Collections.sort(Configuration.list, (student1, student2) ->
                     student1.getAddress().compareTo(student2.getAddress()));
             System.out.println("排序完成！结果如下：");
-            this.display();            //显示
+            //this.display();            //显示
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", "学号", "姓名",
+                    "性别", "年龄", "所在班级", "平均学分绩点", "电话号码",
+                    "生日", "家庭地址");
+            int count = 0;
+            for (Student student : Configuration.list)
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
                 io.Log.write("管理员","按家庭地址升序");
@@ -1591,7 +1801,19 @@ public class Function implements Student_Function
             Collections.sort(Configuration.list, (student1, student2) ->
                     student2.getAddress().compareTo(student1.getAddress()));
             System.out.println("排序完成！结果如下：");
-            this.display();            //显示
+            //this.display();            //显示
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", "学号", "姓名",
+                    "性别", "年龄", "所在班级", "平均学分绩点", "电话号码",
+                    "生日", "家庭地址");
+            int count = 0;
+            for (Student student : Configuration.list)
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
             if (isIsAdministrator())             //管理员
             {
                 io.Log.write("管理员","按家庭地址降序");
