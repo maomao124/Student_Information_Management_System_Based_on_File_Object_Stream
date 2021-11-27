@@ -47,7 +47,7 @@ public class Function implements Student_Function
     }
 
     @SuppressWarnings("all")
-    public static void end()
+    public static void end(String operating)
     {
         endTime = System.nanoTime();     //获取结束时间
         if ((endTime - startTime) < 1000000)
@@ -55,21 +55,21 @@ public class Function implements Student_Function
             double final_runtime;
             final_runtime = (endTime - startTime);
             final_runtime = final_runtime / 1000;
-            System.out.println("运行时间： " + final_runtime + "微秒");
+            System.out.println(operating + "操作耗费时间： " + final_runtime + "微秒");
         }
         else if ((endTime - startTime) >= 1000000 && (endTime - startTime) < 10000000000L)
         {
             double final_runtime;
             final_runtime = (endTime - startTime) / 1000;
             final_runtime = final_runtime / 1000;
-            System.out.println("运行时间： " + final_runtime + "毫秒");
+            System.out.println(operating + "操作耗费时间： " + final_runtime + "毫秒");
         }
         else
         {
             double final_runtime;
             final_runtime = (endTime - startTime) / 10000;
             final_runtime = final_runtime / 100000;
-            System.out.println("运行时间： " + final_runtime + "秒");
+            System.out.println(operating + "操作耗费时间： " + final_runtime + "秒");
         }
         Runtime r = Runtime.getRuntime();
         float memory;
@@ -87,7 +87,6 @@ public class Function implements Student_Function
     @Override
     public void insert()
     {
-        start();
         Scanner input = new Scanner(System.in);
         long no;      //学号
         String name;  //名字
@@ -419,6 +418,7 @@ public class Function implements Student_Function
         //家庭地址
         System.out.print("请输入家庭地址：");
         address = input.next();
+        start();
         //写入对象
         Student student = new Student();
         student.setNo(no);
@@ -463,7 +463,15 @@ public class Function implements Student_Function
         Configuration.list.add(student);
         //写入文件
         io.Student.write(config);
-        end();
+        if (isIsAdministrator())             //管理员
+        {
+            io.Log.write("管理员","添加学生信息");
+        }
+        else                                 //访客
+        {
+            io.Log.write("访客","添加学生信息");
+        }
+        end("添加");
     }
 
     @Override
@@ -489,7 +497,15 @@ public class Function implements Student_Function
             }
             System.out.println("一共" + count + "条记录");
         }
-        end();
+        if (isIsAdministrator())             //管理员
+        {
+            io.Log.write("管理员","查看学生信息");
+        }
+        else                                 //访客
+        {
+            io.Log.write("访客","查看学生信息");
+        }
+        end("查看");
     }
 
     @Override
@@ -499,6 +515,7 @@ public class Function implements Student_Function
         Scanner input = new Scanner(System.in);
         System.out.print("请输入搜索关键字：");
         keyword = input.next();
+        start();
         Student student;
         int index;
         int count = 0;
@@ -516,6 +533,15 @@ public class Function implements Student_Function
             }
         }
         System.out.println("一共" + count + "条记录");
+        if (isIsAdministrator())             //管理员
+        {
+            io.Log.write("管理员","使用全局搜索搜索学生信息");
+        }
+        else                                 //访客
+        {
+            io.Log.write("访客","使用全局搜索搜索学生信息");
+        }
+        end("全局搜索");
     }
 
     @Override
@@ -1060,6 +1086,14 @@ public class Function implements Student_Function
         {
             System.out.println("返回到主菜单");
         }
+        if (isIsAdministrator())             //管理员
+        {
+            io.Log.write("管理员","修改学生学号为"+no+"的信息  操作序号为"+serialNumber);
+        }
+        else                                 //访客
+        {
+            io.Log.write("访客","修改学生学号为"+no+"的信息  操作序号为"+serialNumber);
+        }
     }
 
     @Override
@@ -1146,16 +1180,26 @@ public class Function implements Student_Function
         }
         System.out.println("请输入：");
         deleteKeyWord = input.next();
+        start();
         if (deleteKeyWord.equals("delete"))
         {
             Configuration.list.remove(index);        //删除
             io.Student.write(config);                //写入
             //// TODO: 2021/11/27 log
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","删除学生学号为"+no+"的信息");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","删除学生学号为"+no+"的信息");
+            }
         }
         else
         {
             System.out.print("取消删除");
         }
+        end("删除");
     }
 
     @Override
@@ -1216,6 +1260,7 @@ public class Function implements Student_Function
                 }
             }
         }
+        start();
         if (serialNumber == 1)         //按学号升序
         {
             //对象集合排序方法1
@@ -1231,6 +1276,14 @@ public class Function implements Student_Function
             });
             System.out.println("排序完成！结果如下：");
             this.display();            //显示
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","按学号升序");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","按学号升序");
+            }
             io.Student.write(config);
         }
         else if (serialNumber == 2)      //按学号降序
@@ -1240,6 +1293,14 @@ public class Function implements Student_Function
             Collections.sort(data.Configuration.list, (student1, student2) -> (int) (student2.getNo() - student1.getNo()));
             System.out.println("排序完成！结果如下：");
             this.display();            //显示
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","按学号降序");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","按学号降序");
+            }
             io.Student.write(config);
         }
         else if (serialNumber == 3)              //按姓名升序
@@ -1256,6 +1317,14 @@ public class Function implements Student_Function
             });
             System.out.println("排序完成！结果如下：");
             this.display();            //显示
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","按姓名升序");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","按姓名升序");
+            }
             io.Student.write(config);
         }
         else if (serialNumber == 4)              //按姓名降序
@@ -1265,6 +1334,14 @@ public class Function implements Student_Function
                     (student2.getName().compareTo(student1.getName())));
             System.out.println("排序完成！结果如下：");
             this.display();            //显示
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","按姓名降序");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","按姓名降序");
+            }
             io.Student.write(config);
         }
         else if (serialNumber == 5)             //按性别升序
@@ -1272,6 +1349,14 @@ public class Function implements Student_Function
             Collections.sort(Configuration.list, Comparator.comparing(Student::getSex));
             System.out.println("排序完成！结果如下：");
             this.display();            //显示
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","按性别升序");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","按性别升序");
+            }
             io.Student.write(config);
         }
         else if (serialNumber == 6)            //按性别降序
@@ -1279,6 +1364,14 @@ public class Function implements Student_Function
             Collections.sort(Configuration.list, (student1, student2) -> student2.getSex().compareTo(student1.getSex()));
             System.out.println("排序完成！结果如下：");
             this.display();            //显示
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","按性别降序");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","按性别降序");
+            }
             io.Student.write(config);
         }
         else if (serialNumber == 7)              //按年龄升序
@@ -1286,6 +1379,14 @@ public class Function implements Student_Function
             Collections.sort(Configuration.list, (student1, student2) -> student1.getAge() - student2.getAge());
             System.out.println("排序完成！结果如下：");
             this.display();            //显示
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","按年龄升序");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","按年龄升序");
+            }
             io.Student.write(config);
         }
         else if (serialNumber == 8)             //按年龄降序
@@ -1293,6 +1394,14 @@ public class Function implements Student_Function
             Collections.sort(Configuration.list, (student1, student2) -> student2.getAge() - student1.getAge());
             System.out.println("排序完成！结果如下：");
             this.display();            //显示
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","按年龄降序");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","按年龄降序");
+            }
             io.Student.write(config);
         }
         else if (serialNumber == 9)             //按所在班级升序
@@ -1301,6 +1410,14 @@ public class Function implements Student_Function
                     student1.getClasses().compareTo(student2.getClasses()));
             System.out.println("排序完成！结果如下：");
             this.display();            //显示
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","按所在班级升序");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","按所在班级升序");
+            }
             io.Student.write(config);
         }
         else if (serialNumber == 10)             //按所在班级降序
@@ -1309,6 +1426,14 @@ public class Function implements Student_Function
                     student2.getClasses().compareTo(student1.getClasses()));
             System.out.println("排序完成！结果如下：");
             this.display();            //显示
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","按所在班级降序");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","按所在班级降序");
+            }
             io.Student.write(config);
         }
         else if (serialNumber == 11)              //按平均学分绩点升序
@@ -1336,6 +1461,14 @@ public class Function implements Student_Function
             });
             System.out.println("排序完成！结果如下：");
             this.display();            //显示
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","按平均学分绩点升序");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","按平均学分绩点升序");
+            }
             io.Student.write(config);
         }
         else if (serialNumber == 12)              //按平均学分绩点降序
@@ -1363,6 +1496,14 @@ public class Function implements Student_Function
             });
             System.out.println("排序完成！结果如下：");
             this.display();            //显示
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","按平均学分绩点降序");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","按平均学分绩点降序");
+            }
             io.Student.write(config);
         }
         else if (serialNumber == 13)             //按电话号码升序
@@ -1371,6 +1512,14 @@ public class Function implements Student_Function
                     student1.getNumber().compareTo(student2.getNumber()));
             System.out.println("排序完成！结果如下：");
             this.display();            //显示
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","按电话号码升序");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","按电话号码升序");
+            }
             io.Student.write(config);
         }
         else if (serialNumber == 14)             //按电话号码降序
@@ -1379,6 +1528,14 @@ public class Function implements Student_Function
                     student2.getNumber().compareTo(student1.getNumber()));
             System.out.println("排序完成！结果如下：");
             this.display();            //显示
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","按电话号码降序");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","按电话号码降序");
+            }
             io.Student.write(config);
         }
         else if (serialNumber == 15)             //按生日升序
@@ -1387,14 +1544,30 @@ public class Function implements Student_Function
                     student1.getBirthday().compareTo(student2.getBirthday()));
             System.out.println("排序完成！结果如下：");
             this.display();            //显示
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","按生日升序");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","按生日升序");
+            }
             io.Student.write(config);
         }
-        else if (serialNumber == 16)             //按生日升序
+        else if (serialNumber == 16)             //按生日降序
         {
             Collections.sort(Configuration.list, (student1, student2) ->
                     student2.getBirthday().compareTo(student1.getBirthday()));
             System.out.println("排序完成！结果如下：");
             this.display();            //显示
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","按生日降序");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","按生日降序");
+            }
             io.Student.write(config);
         }
         else if (serialNumber == 17)             //按家庭地址升序
@@ -1403,6 +1576,14 @@ public class Function implements Student_Function
                     student1.getAddress().compareTo(student2.getAddress()));
             System.out.println("排序完成！结果如下：");
             this.display();            //显示
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","按家庭地址升序");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","按家庭地址升序");
+            }
             io.Student.write(config);
         }
         else if (serialNumber == 18)             //按家庭地址降序
@@ -1411,8 +1592,17 @@ public class Function implements Student_Function
                     student2.getAddress().compareTo(student1.getAddress()));
             System.out.println("排序完成！结果如下：");
             this.display();            //显示
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","按家庭地址降序");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","按家庭地址降序");
+            }
             io.Student.write(config);
         }
+        end("排序");
     }
 
     @Override
@@ -1441,9 +1631,18 @@ public class Function implements Student_Function
             config.setPassword_SHA3_512(password_SHA3_512);        //写入配置类
             io.Configuration.write(config);                       //写入配置文件
             System.out.println("密码已更新");
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","修改密码");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","修改密码");
+            }
         }
         else
         {
+            Toolkit.getDefaultToolkit().beep();
             System.out.println("密码输入错误");
         }
     }
@@ -1451,6 +1650,637 @@ public class Function implements Student_Function
     @Override
     public void search()
     {
+        Scanner input = new Scanner(System.in);
+        System.out.println("""
+                1.搜索学号       2.搜索姓名     3.搜索性别
+                4.搜索年龄       5.搜索班级     6.搜索平均学分绩点
+                7.搜索电话号码    8.搜索生日     9.搜索家庭地址""");
+        int serialNumber;
+        //控制台输入变量:serialNumber
+        int errCount = 0;
+        while (true)
+        {
+            try
+            {
+                //min:1
+                //max:9
+                System.out.print("请输入序号：");
+                serialNumber = input.nextInt();
+                if (serialNumber >= 1 && serialNumber <= 9)
+                {
+                    break;
+                }
+                else
+                {
+                    errCount++;
+                    Toolkit.getDefaultToolkit().beep();
+                    if (errCount > 10)
+                    {
+                        System.err.println("错误次数过多！！！退出");
+                        System.exit(1);
+                    }
+                    System.out.println("输入的数据不在范围内! 范围：[1,9]");
+                }
+            }
+            catch (Exception e)
+            {
+                errCount++;
+                if (errCount > 5)
+                {
+                    Toolkit.getDefaultToolkit().beep();
+                    System.err.println("错误次数过多！！！退出");
+                    System.exit(1);
+                }
+                else
+                {
+                    Toolkit.getDefaultToolkit().beep();
+                    System.out.println("输入错误！！！请重新输入！");
+                    input.nextLine();
+                }
+            }
+        }
+        if (serialNumber == 1)             //学号
+        {
+            long no;
+            //控制台输入变量:no
+            errCount = 0;
+            while (true)
+            {
+                try
+                {
+                    //min:0
+                    //max:999999999999999999
+                    System.out.print("请输入要搜索的学号：");
+                    no = input.nextLong();
+                    if (no >= 0 && no <= 999999999999999999L)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        errCount++;
+                        Toolkit.getDefaultToolkit().beep();
+                        if (errCount > 10)
+                        {
+                            System.err.println("错误次数过多！！！退出");
+                            System.exit(1);
+                        }
+                        System.out.println("输入的数据不在范围内! 范围：[0,999999999999999999]");
+                    }
+                }
+                catch (Exception e)
+                {
+                    errCount++;
+                    if (errCount > 5)
+                    {
+                        Toolkit.getDefaultToolkit().beep();
+                        System.err.println("错误次数过多！！！退出");
+                        System.exit(1);
+                    }
+                    else
+                    {
+                        Toolkit.getDefaultToolkit().beep();
+                        System.out.println("输入错误！！！请重新输入！");
+                        input.nextLine();
+                    }
+                }
+            }
+            int count = 0;
+            Student student;
+            for (int i = 0; i < Configuration.list.size(); i++)
+            {
+                student = data.Configuration.list.get(i);
+                if (student.getNo() == no)
+                {
+                    System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                            student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                            student.getBirthday(), student.getAddress());
+                    count++;
+                }
+            }
+            if (count == 0)
+            {
+                Toolkit.getDefaultToolkit().beep();
+                System.out.println("未找到学号为" + no + "的学生");
+            }
+            else
+            {
+                System.out.println("共计" + count + "条记录");
+            }
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","查找学号");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","查找学号");
+            }
+        }
+        else if (serialNumber == 2)
+        {
+            String name;
+            System.out.print("请输入要查找的姓名：");
+            name = input.next();
+            int count = 0;
+            Student student;
+            for (int i = 0; i < Configuration.list.size(); i++)
+            {
+                student = data.Configuration.list.get(i);
+                if (student.getName().equals(name))
+                {
+                    System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                            student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                            student.getBirthday(), student.getAddress());
+                    count++;
+                }
+            }
+            if (count == 0)
+            {
+                Toolkit.getDefaultToolkit().beep();
+                System.out.println("未找到名字为" + name + "的学生");
+            }
+            else
+            {
+                System.out.println("共计" + count + "条记录");
+            }
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","查找姓名");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","查找姓名");
+            }
+        }
+        else if (serialNumber == 3)
+        {
+            String sex;
+            System.out.print("请输入要搜索的性别：");
+            sex = input.next();
+            int count = 0;
+            Student student;
+            for (int i = 0; i < Configuration.list.size(); i++)
+            {
+                student = data.Configuration.list.get(i);
+                if (student.getSex().equals(sex))
+                {
+                    System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                            student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                            student.getBirthday(), student.getAddress());
+                    count++;
+                }
+            }
+            if (count == 0)
+            {
+                Toolkit.getDefaultToolkit().beep();
+                System.out.println("未找到性别为" + sex + "的学生");
+                System.out.println("请检查输入的性别，性别只能是男或者女");
+            }
+            else
+            {
+                System.out.println("共计" + count + "条记录");
+            }
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","查找性别");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","查找性别");
+            }
+        }
+        else if (serialNumber == 4)
+        {
+            int age;
+            //控制台输入变量:age
+            errCount = 0;
+            while (true)
+            {
+                try
+                {
+                    //min:0
+                    //max:100
+                    System.out.print("请输入要搜索的年龄：");
+                    age = input.nextInt();
+                    if (age >= 0 && age <= 100)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        errCount++;
+                        Toolkit.getDefaultToolkit().beep();
+                        if (errCount > 10)
+                        {
+                            System.err.println("错误次数过多！！！退出");
+                            System.exit(1);
+                        }
+                        System.out.println("输入的数据不在范围内! 范围：[0,100]");
+                    }
+                }
+                catch (Exception e)
+                {
+                    errCount++;
+                    if (errCount > 5)
+                    {
+                        Toolkit.getDefaultToolkit().beep();
+                        System.err.println("错误次数过多！！！退出");
+                        System.exit(1);
+                    }
+                    else
+                    {
+                        Toolkit.getDefaultToolkit().beep();
+                        System.out.println("输入错误！！！请重新输入！");
+                        input.nextLine();
+                    }
+                }
+            }
+            int count = 0;
+            Student student;
+            for (int i = 0; i < Configuration.list.size(); i++)
+            {
+                student = data.Configuration.list.get(i);
+                if (student.getAge() == age)
+                {
+                    System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                            student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                            student.getBirthday(), student.getAddress());
+                    count++;
+                }
+            }
+            if (count == 0)
+            {
+                Toolkit.getDefaultToolkit().beep();
+                System.out.println("未找到年龄为" + age + "的学生");
+            }
+            else
+            {
+                System.out.println("共计" + count + "条记录");
+            }
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","查找年龄");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","查找年龄");
+            }
+        }
+        else if (serialNumber == 5)
+        {
+            String classes;
+            System.out.print("请输入要搜索的所在班级：");
+            classes = input.next();
+            int count = 0;
+            Student student;
+            for (int i = 0; i < Configuration.list.size(); i++)
+            {
+                student = data.Configuration.list.get(i);
+                if (student.getClasses().equals(classes))
+                {
+                    System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                            student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                            student.getBirthday(), student.getAddress());
+                    count++;
+                }
+            }
+            if (count == 0)
+            {
+                Toolkit.getDefaultToolkit().beep();
+                System.out.println("未找到班级为" + classes + "的学生");
+            }
+            else
+            {
+                System.out.println("共计" + count + "条记录");
+            }
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","查找班级");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","查找班级");
+            }
+        }
+        else if (serialNumber == 6)
+        {
+            float GPA;
+            //控制台输入变量:GPA
+            errCount = 0;
+            while (true)
+            {
+                try
+                {
+                    //min:0
+                    //max:5.0
+                    System.out.print("请输入要搜索的平均学分绩点：");
+                    GPA = input.nextFloat();
+                    if (GPA >= 0 && GPA <= 5.0)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        errCount++;
+                        Toolkit.getDefaultToolkit().beep();
+                        if (errCount > 10)
+                        {
+                            System.err.println("错误次数过多！！！退出");
+                            System.exit(1);
+                        }
+                        System.out.println("输入的数据不在范围内! 范围：[0,5.0]");
+                    }
+                }
+                catch (Exception e)
+                {
+                    errCount++;
+                    if (errCount > 5)
+                    {
+                        Toolkit.getDefaultToolkit().beep();
+                        System.err.println("错误次数过多！！！退出");
+                        System.exit(1);
+                    }
+                    else
+                    {
+                        Toolkit.getDefaultToolkit().beep();
+                        System.out.println("输入错误！！！请重新输入！");
+                        input.nextLine();
+                    }
+                }
+            }
+            int count = 0;
+            Student student;
+            for (int i = 0; i < Configuration.list.size(); i++)
+            {
+                student = data.Configuration.list.get(i);
+                if (student.getGPA() == GPA)
+                {
+                    System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                            student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                            student.getBirthday(), student.getAddress());
+                    count++;
+                }
+            }
+            if (count == 0)
+            {
+                Toolkit.getDefaultToolkit().beep();
+                System.out.println("未找到平均学分绩点为" + GPA + "的学生");
+            }
+            else
+            {
+                System.out.println("共计" + count + "条记录");
+            }
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","查找平均学分绩点");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","查找平均学分绩点");
+            }
+        }
+        else if (serialNumber == 7)
+        {
+            String number;
+            System.out.print("请输入要搜索的电话号码：");
+            number = input.next();
+            int count = 0;
+            Student student;
+            for (int i = 0; i < Configuration.list.size(); i++)
+            {
+                student = data.Configuration.list.get(i);
+                if (student.getNumber().equals(number))
+                {
+                    System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                            student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                            student.getBirthday(), student.getAddress());
+                    count++;
+                }
+            }
+            if (count == 0)
+            {
+                Toolkit.getDefaultToolkit().beep();
+                System.out.println("未找到电话号码为" + number + "的学生");
+            }
+            else
+            {
+                System.out.println("共计" + count + "条记录");
+            }
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","查找电话号码");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","查找电话号码");
+            }
+        }
+        else if (serialNumber == 8)
+        {
+            String birthday;
+            System.out.println("开始输入生日信息");
+            {
+                int year;
+                int month;
+                int day;
+                //控制台输入变量:year
+                errCount = 0;
+                while (true)
+                {
+                    try
+                    {
+                        //min:1000
+                        //max:3000
+                        System.out.print("请输入年：");
+                        year = input.nextInt();
+                        if (year >= 1000 && year <= 3000)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            errCount++;
+                            Toolkit.getDefaultToolkit().beep();
+                            if (errCount > 10)
+                            {
+                                System.err.println("错误次数过多！！！退出");
+                                System.exit(1);
+                            }
+                            System.out.println("输入的数据不在范围内! 范围：[1000,3000]");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        errCount++;
+                        if (errCount > 5)
+                        {
+                            Toolkit.getDefaultToolkit().beep();
+                            System.err.println("错误次数过多！！！退出");
+                            System.exit(1);
+                        }
+                        else
+                        {
+                            Toolkit.getDefaultToolkit().beep();
+                            System.out.println("输入错误！！！请重新输入！");
+                            input.nextLine();
+                        }
+                    }
+                }
+                //控制台输入变量:month
+                errCount = 0;
+                while (true)
+                {
+                    try
+                    {
+                        //min:1
+                        //max:12
+                        System.out.print("请输入月：");
+                        month = input.nextInt();
+                        if (month >= 1 && month <= 12)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            errCount++;
+                            Toolkit.getDefaultToolkit().beep();
+                            if (errCount > 10)
+                            {
+                                System.err.println("错误次数过多！！！退出");
+                                System.exit(1);
+                            }
+                            System.out.println("输入的数据不在范围内! 范围：[1,12]");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        errCount++;
+                        if (errCount > 5)
+                        {
+                            Toolkit.getDefaultToolkit().beep();
+                            System.err.println("错误次数过多！！！退出");
+                            System.exit(1);
+                        }
+                        else
+                        {
+                            Toolkit.getDefaultToolkit().beep();
+                            System.out.println("输入错误！！！请重新输入！");
+                            input.nextLine();
+                        }
+                    }
+                }
+                //控制台输入变量:day
+                errCount = 0;
+                while (true)
+                {
+                    try
+                    {
+                        //min:1
+                        //max:31
+                        System.out.print("请输入日：");
+                        day = input.nextInt();
+                        if (day >= 1 && day <= 31)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            errCount++;
+                            Toolkit.getDefaultToolkit().beep();
+                            if (errCount > 10)
+                            {
+                                System.err.println("错误次数过多！！！退出");
+                                System.exit(1);
+                            }
+                            System.out.println("输入的数据不在范围内! 范围：[1,31]");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        errCount++;
+                        if (errCount > 5)
+                        {
+                            Toolkit.getDefaultToolkit().beep();
+                            System.err.println("错误次数过多！！！退出");
+                            System.exit(1);
+                        }
+                        else
+                        {
+                            Toolkit.getDefaultToolkit().beep();
+                            System.out.println("输入错误！！！请重新输入！");
+                            input.nextLine();
+                        }
+                    }
+                }
+                birthday = year + "-" + month + "-" + day;
+            }
+            int count = 0;
+            Student student;
+            for (int i = 0; i < Configuration.list.size(); i++)
+            {
+                student = data.Configuration.list.get(i);
+                if (student.getBirthday().equals(birthday))
+                {
+                    System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                            student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                            student.getBirthday(), student.getAddress());
+                    count++;
+                }
+            }
+            if (count == 0)
+            {
+                Toolkit.getDefaultToolkit().beep();
+                System.out.println("未找到生日为" + birthday + "的学生");
+            }
+            else
+            {
+                System.out.println("共计" + count + "条记录");
+            }
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","查找生日");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","查找生日");
+            }
+        }
+        else
+        {
+            String address;
+            System.out.print("请输入要搜索的家庭地址：");
+            address = input.next();
+            int count = 0;
+            Student student;
+            for (int i = 0; i < Configuration.list.size(); i++)
+            {
+                student = data.Configuration.list.get(i);
+                if (student.getAddress().equals(address))
+                {
+                    System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                            student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                            student.getBirthday(), student.getAddress());
+                    count++;
+                }
+            }
+            if (count == 0)
+            {
+                Toolkit.getDefaultToolkit().beep();
+                System.out.println("未找到家庭地址为" + address + "的学生");
 
+            }
+            else
+            {
+                System.out.println("共计" + count + "条记录");
+            }
+            if (isIsAdministrator())             //管理员
+            {
+                io.Log.write("管理员","查找家庭地址");
+            }
+            else                                 //访客
+            {
+                io.Log.write("访客","查找家庭地址");
+            }
+        }
     }
 }

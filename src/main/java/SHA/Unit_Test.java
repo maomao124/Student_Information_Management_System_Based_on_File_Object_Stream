@@ -29,6 +29,6 @@ public class Unit_Test
         System.out.println(s1);
         s1 = SHA3_512.getSHA3_512toUpperCase("123");
         System.out.println(s1);
-        operating.Function.end();
+        operating.Function.end("0");
     }
 }
