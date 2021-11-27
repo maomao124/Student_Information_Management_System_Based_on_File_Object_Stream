@@ -1,4 +1,4 @@
-15
+16
 src\\main\\java\\data\\Configuration.java
 src\\main\\java\\data\\Student.java
 src\\main\\java\\data\\Unit_Test.java
@@ -11,6 +11,7 @@ src\\main\\java\\operating\\Function.java
 src\\main\\java\\operating\\LifeCycle.java
 src\\main\\java\\operating\\Student_Function.java
 src\\main\\java\\operating\\Unit_Test.java
+src\\main\\java\\Run.java
 src\\main\\java\\SHA\\MD5.java
 src\\main\\java\\SHA\\SHA3_512.java
 src\\main\\java\\SHA\\Unit_Test.java
