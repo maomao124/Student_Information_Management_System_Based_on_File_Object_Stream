@@ -1,0 +1,2521 @@
+H:\����\��������\�����ļ���������ѧ����Ϣ����ϵͳ\\src\\main\\java\\data\\Configuration.java
+package data;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+/**
+ * Project name(项目名称)：基于文件对象流的学生信息管理系统
+ * Package(包名): data
+ * Class(类名): Configuration
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2021/11/25
+ * Time(创建时间)： 22:01
+ * Version(版本): 1.0
+ * Description(描述)： 配置文件的数据
+ */
+
+public class Configuration implements Serializable
+{
+    //private static final long serialVersionUID = 1L;
+    private String username_MD5;
+    private String password_SHA3_512;
+    private int size;         //学生信息管理系统的student对象的数量
+    public static ArrayList<data.Student> list=new ArrayList<>();
+
+    public String getUsername_MD5()
+    {
+        return username_MD5;
+    }
+
+    public void setUsername_MD5(String username_MD5)
+    {
+        this.username_MD5 = username_MD5;
+    }
+
+    public String getPassword_SHA3_512()
+    {
+        return password_SHA3_512;
+    }
+
+    public void setPassword_SHA3_512(String password_SHA3_512)
+    {
+        this.password_SHA3_512 = password_SHA3_512;
+    }
+
+    public int getSize()
+    {
+        return size;
+    }
+
+    public void setSize()
+    {
+        /*
+        if (list == null)
+        {
+            this.size = 0;
+        }
+        else
+        {
+
+         */
+            this.size = list.size();
+        //}
+    }
+}
+�
+H:\����\��������\�����ļ���������ѧ����Ϣ����ϵͳ\\src\\main\\java\\data\\Student.java
+package data;
+
+import java.io.Serializable;
+
+/**
+ * Project name(项目名称)：基于文件对象流的学生信息管理系统
+ * Package(包名): data
+ * Class(类名): Student
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2021/11/25
+ * Time(创建时间)： 21:40
+ * Version(版本): 1.0
+ * Description(描述)： 学生数据
+ */
+
+public class Student implements Serializable
+{
+    //@Serial
+    //private static final long serialVersionUID = 1L;
+    private long no;      //学号
+    private String name;  //名字
+    private String sex;   //性别
+    private int age;      //年龄
+    private String classes; //所在班级，class与关键字起冲突
+    private float GPA;      //平均学分绩点
+    private String number;  //电话号码
+    private String birthday; //生日
+    private String address;  //家庭地址
+
+    public Student()
+    {
+
+    }
+
+    public Student(long no, String name, String sex, int age, String classes, float GPA, String number, String birthday, String address)
+    {
+        this.no = no;
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+        this.classes = classes;
+        this.GPA = GPA;
+        this.number = number;
+        this.birthday = birthday;
+        this.address = address;
+    }
+
+    public long getNo()
+    {
+        return no;
+    }
+
+    public void setNo(long no)
+    {
+        this.no = no;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public String getSex()
+    {
+        return sex;
+    }
+
+    public void setSex(String sex)
+    {
+        this.sex = sex;
+    }
+
+    public int getAge()
+    {
+        return age;
+    }
+
+    public void setAge(int age)
+    {
+        this.age = age;
+    }
+
+    public String getClasses()
+    {
+        return classes;
+    }
+
+    public void setClasses(String classes)
+    {
+        this.classes = classes;
+    }
+
+    public float getGPA()
+    {
+        return GPA;
+    }
+
+    public void setGPA(float GPA)
+    {
+        this.GPA = GPA;
+    }
+
+    public String getNumber()
+    {
+        return number;
+    }
+
+    public void setNumber(String number)
+    {
+        this.number = number;
+    }
+
+    public String getBirthday()
+    {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday)
+    {
+        this.birthday = birthday;
+    }
+
+    public String getAddress()
+    {
+        return address;
+    }
+
+    public void setAddress(String address)
+    {
+        this.address = address;
+    }
+
+    @Override
+    @SuppressWarnings("all")
+    public String toString()
+    {
+        final StringBuilder stringbuilder = new StringBuilder();
+        stringbuilder.append(no).append("\t\t");
+        stringbuilder.append(name).append("\t\t");
+        stringbuilder.append(sex).append("\t\t");
+        stringbuilder.append(age).append("\t\t");
+        stringbuilder.append(classes).append("\t\t");
+        stringbuilder.append(GPA).append("\t\t");
+        stringbuilder.append(number).append("\t\t");
+        stringbuilder.append(birthday).append("\t\t");
+        stringbuilder.append(address);
+        return stringbuilder.toString();
+    }
+
+    @SuppressWarnings("all")
+    public String toString_search()
+    {
+        final StringBuilder stringbuilder = new StringBuilder();
+        stringbuilder.append(no);
+        stringbuilder.append(name);
+        stringbuilder.append(sex);
+        stringbuilder.append(age);
+        stringbuilder.append(classes);
+        stringbuilder.append(GPA);
+        stringbuilder.append(number);
+        stringbuilder.append(birthday);
+        stringbuilder.append(address);
+        return stringbuilder.toString();
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o)    //引用同一个对象
+        {
+            return true;
+        }
+        if (o == null)    //检测obj是否为null
+        {
+            return false;
+        }
+        //if(!(otherObject instanceof ClassName)) //如果所有的子类都拥有统一的语义
+        if (this.getClass() != o.getClass())   //比较this与obj是否属于同一个类
+        {
+            return false;
+        }
+        //Object类向下转型
+        Student student = (Student) o;
+
+        if (no != student.no)
+        {
+            return false;
+        }
+        if (age != student.age)
+        {
+            return false;
+        }
+        if (Float.compare(student.GPA, GPA) != 0)
+        {
+            return false;
+        }
+        if (!name.equals(student.name))
+        {
+            return false;
+        }
+        if (!sex.equals(student.sex))
+        {
+            return false;
+        }
+        if (!classes.equals(student.classes))
+        {
+            return false;
+        }
+        if (!number.equals(student.number))
+        {
+            return false;
+        }
+        if (!birthday.equals(student.birthday))
+        {
+            return false;
+        }
+        return address.equals(student.address);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = (int) (no ^ (no >>> 32));
+        result = 31 * result + name.hashCode();
+        result = 31 * result + sex.hashCode();
+        result = 31 * result + age;
+        result = 31 * result + classes.hashCode();
+        result = 31 * result + (GPA != +0.0f ? Float.floatToIntBits(GPA) : 0);
+        result = 31 * result + number.hashCode();
+        result = 31 * result + birthday.hashCode();
+        result = 31 * result + address.hashCode();
+        return result;
+    }
+}
+�
+H:\����\��������\�����ļ���������ѧ����Ϣ����ϵͳ\\src\\main\\java\\data\\Unit_Test.java
+package data;
+
+/**
+ * Project name(项目名称)：基于文件对象流的学生信息管理系统
+ * Package(包名): data
+ * Class(类名): Unit_Test
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2021/11/26
+ * Time(创建时间)： 18:48
+ * Version(版本): 1.0
+ * Description(描述)： 无
+ */
+
+public class Unit_Test
+{
+    public static void main(String[] args)
+    {
+        Student student = new Student(123, "张三", "男", 18, "计算机",
+                2.3f, "18756478562", "2001-02-09", "湖南省");
+        Student student1 = new Student(123454, "张三", "男", 18, "计算机",
+                2.3f, "18756478562", "2001-02-09", "湖南省");
+        System.out.println(student);
+        System.out.println(student1);
+        System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n",student.getNo(),student.getName(),
+                student.getSex(),student.getAge(), student.getClasses(),student.getGPA(),student.getNumber(),
+                student.getBirthday(),student.getAddress());
+        student=student1;
+        System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n",student.getNo(),student.getName(),
+                student.getSex(),student.getAge(), student.getClasses(),student.getGPA(),student.getNumber(),
+                student.getBirthday(),student.getAddress());
+        System.out.println(student.toString_search());
+    }
+}
+�
+H:\����\��������\�����ļ���������ѧ����Ϣ����ϵͳ\\src\\main\\java\\io\\Configuration.java
+package io;
+
+import java.awt.*;
+import java.io.*;
+
+/**
+ * Project name(项目名称)：基于文件对象流的学生信息管理系统
+ * Package(包名): io
+ * Class(类名): Configuration
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2021/11/25
+ * Time(创建时间)： 22:46
+ * Version(版本): 1.0
+ * Description(描述)： 配置文件的输入和输出
+ */
+
+public class Configuration
+{
+    public static void write(data.Configuration config)
+    {
+        config.setSize();     //再次确保同步
+        File file = new File("Configuration.ini");
+        FileOutputStream fileOutputStream = null;
+        ObjectOutputStream objectOutputStream = null;
+        try                                  //文件流打开，文件读写
+        {
+            fileOutputStream = new FileOutputStream(file);
+            objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            //System.out.println("配置写："+config.getSize());
+            objectOutputStream.writeObject(config);        //写
+        }
+        catch (FileNotFoundException e)      //文件未找到
+        {
+            Toolkit.getDefaultToolkit().beep();
+            System.err.println("文件未找到！！！  " + "\n错误内容：" + e.toString());
+        }
+        catch (Exception e)                  //其它异常
+        {
+            Toolkit.getDefaultToolkit().beep();
+            e.printStackTrace();
+        }
+        finally
+        {
+            try                              //关闭流
+            {
+
+                if (fileOutputStream != null)
+                {
+                    fileOutputStream.close();
+                }
+                if (objectOutputStream != null)
+                {
+                    objectOutputStream.close();
+                }
+            }
+            catch (NullPointerException e)    //空指针异常
+            {
+                Toolkit.getDefaultToolkit().beep();
+                System.err.println("文件已经被关闭，无法再次关闭！！！");
+            }
+            catch (Exception e)              //其它异常
+            {
+                Toolkit.getDefaultToolkit().beep();
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static data.Configuration read()
+    {
+        File file = new File("Configuration.ini");
+        FileInputStream fileInputStream = null;
+        ObjectInputStream ObjectInputStream = null;
+        try                                  //文件流打开，文件读写
+        {
+            fileInputStream = new FileInputStream(file);
+            ObjectInputStream = new ObjectInputStream(fileInputStream);
+            data.Configuration config = (data.Configuration) ObjectInputStream.readObject();
+            //System.out.println("配置读："+config.getSize());
+            //验证size
+            if (config.getSize() < 0)
+            {
+                System.out.println("读取异常！！！");
+                return null;
+            }
+            return config;
+        }
+        catch (FileNotFoundException e)      //文件未找到
+        {
+            Toolkit.getDefaultToolkit().beep();
+            System.err.println("文件未找到！！！  " + "\n错误内容：" + e.toString());
+        }
+        catch (Exception e)                  //其它异常
+        {
+            Toolkit.getDefaultToolkit().beep();
+            e.printStackTrace();
+        }
+        finally
+        {
+            try                              //关闭流
+            {
+                if (fileInputStream != null)
+                {
+                    fileInputStream.close();
+                }
+                if (ObjectInputStream != null)
+                {
+                    ObjectInputStream.close();
+                }
+            }
+            catch (NullPointerException e)    //空指针异常
+            {
+                Toolkit.getDefaultToolkit().beep();
+                System.err.println("文件已经被关闭，无法再次关闭！！！");
+            }
+            catch (Exception e)              //其它异常
+            {
+                Toolkit.getDefaultToolkit().beep();
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public static void main(String[] args)
+    {
+        data.Configuration configuration;
+        configuration=read();
+        System.out.println(configuration.getSize());
+    }
+}
+�
+H:\����\��������\�����ļ���������ѧ����Ϣ����ϵͳ\\src\\main\\java\\io\\Log.java
+package io;
+
+import java.awt.*;
+import java.io.*;
+import java.text.DecimalFormat;
+import java.util.Calendar;
+
+/**
+ * Project name(项目名称)：基于文件对象流的学生信息管理系统
+ * Package(包名): io
+ * Class(类名): Log
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2021/11/26
+ * Time(创建时间)： 15:55
+ * Version(版本): 1.0
+ * Description(描述)： 日志类
+ */
+
+public class Log
+{
+    private static final DecimalFormat decimalFormat1 = new DecimalFormat("00");
+
+    public static void write(String identity, String operating)    //写入日志
+    {
+        Calendar calendar = Calendar.getInstance();// 获取当前时间
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        month = month + 1;                         //月份从 0 开始，所以加 1
+        int day = calendar.get(Calendar.DATE);
+        int week = calendar.get(Calendar.DAY_OF_WEEK);
+        week = week - 1;                             //星期日为第一天
+        int hour = calendar.get(Calendar.HOUR_OF_DAY); //时
+        int minute = calendar.get(Calendar.MINUTE);   //分
+        int second = calendar.get(Calendar.SECOND);   //秒
+        int millisecond = calendar.get(Calendar.MILLISECOND); //毫秒
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH); // 获取今天是本月第几天
+        int dayOfWeekInMonth = calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH); // 获取今天是本月第几周
+        int many = calendar.get(Calendar.DAY_OF_YEAR); // 获取今天是今年第几天
+        StringBuilder stringBuffer1 = new StringBuilder();
+        //stringBuffer1.append(year).append("年 ").append(month).append("月 ").append(day).append("日 ")
+        // .append(hour).append("时 ").append(minute).append("分 ").append(second).append("秒");
+        stringBuffer1.append("日期：");
+        stringBuffer1.append(decimalFormat1.format(year)).append("/").append(decimalFormat1.format(month)).append("/")
+                .append(decimalFormat1.format(day)).append(" \t时间：").append(decimalFormat1.format(hour))
+                .append(":").append(decimalFormat1.format(minute)).append(":").append(decimalFormat1.format(second));
+        stringBuffer1.append(" \t用户：").append(System.getProperty("user.name"));
+        stringBuffer1.append(" \t身份：").append(identity);
+        stringBuffer1.append(" \t操作：").append(operating).append("\n");
+        //System.out.println(stringBuffer1);
+        //开始写入文件里
+        File file = new File("student.log");
+        FileWriter fileWriter = null;
+        try                                  //文件流打开，文件读写
+        {
+            fileWriter = new FileWriter(file, true);
+            fileWriter.write(stringBuffer1.toString());
+        }
+        catch (FileNotFoundException e)      //文件未找到
+        {
+            Toolkit.getDefaultToolkit().beep();
+            System.err.println("文件未找到！！！  " + "\n错误内容：" + e.toString());
+        }
+        catch (Exception e)                  //其它异常
+        {
+            Toolkit.getDefaultToolkit().beep();
+            e.printStackTrace();
+        }
+        finally
+        {
+            try                              //关闭流
+            {
+                if (fileWriter != null)
+                {
+                    fileWriter.close();
+                }
+            }
+            catch (NullPointerException e)    //空指针异常
+            {
+                Toolkit.getDefaultToolkit().beep();
+                System.err.println("文件已经被关闭，无法再次关闭！！！");
+            }
+            catch (Exception e)              //其它异常
+            {
+                Toolkit.getDefaultToolkit().beep();
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void display()        //查看日志文件
+    {
+        File file = new File("student.log");
+        if (!file.exists())
+        {
+            Toolkit.getDefaultToolkit().beep();
+            System.out.println("日志文件不存在！！！");
+            return;
+        }
+        FileReader fileReader = null;
+        BufferedReader bufferedReader = null;
+        int count = 0;        //数量
+        try                                  //文件流打开，文件读写
+        {
+            fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(fileReader);
+            String str;
+            while ((str = bufferedReader.readLine()) != null)
+            {
+                System.out.println(str);
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
+        }
+        catch (FileNotFoundException e)      //文件未找到
+        {
+            Toolkit.getDefaultToolkit().beep();
+            System.err.println("文件未找到！！！  " + "\n错误内容：" + e.toString());
+        }
+        catch (Exception e)                  //其它异常
+        {
+            Toolkit.getDefaultToolkit().beep();
+            e.printStackTrace();
+        }
+        finally
+        {
+            try                              //关闭流
+            {
+                if (fileReader != null)
+                {
+                    fileReader.close();
+                }
+                if (bufferedReader != null)
+                {
+                    bufferedReader.close();
+                }
+            }
+            catch (NullPointerException e)    //空指针异常
+            {
+                Toolkit.getDefaultToolkit().beep();
+                System.err.println("文件已经被关闭，无法再次关闭！！！");
+            }
+            catch (Exception e)              //其它异常
+            {
+                Toolkit.getDefaultToolkit().beep();
+                e.printStackTrace();
+            }
+        }
+    }
+}
+�
+H:\����\��������\�����ļ���������ѧ����Ϣ����ϵͳ\\src\\main\\java\\io\\MD5.java
+package io;
+
+import java.awt.*;
+import java.io.*;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+
+/**
+ * Project name(项目名称)：基于文件对象流的学生信息管理系统
+ * Package(包名): io
+ * Class(类名): MD5
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2021/11/26
+ * Time(创建时间)： 16:34
+ * Version(版本): 1.0
+ * Description(描述)： 验证数据，MD5文件的读写，文件验证
+ */
+
+public class MD5
+{
+    public static String getFileMD5(String filePath)  //获得文件的MD5值
+    {
+        try
+        {
+            InputStream fileInputStream = new FileInputStream(filePath);
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] buffer = new byte[1024];
+            int length = -1;
+            while ((length = fileInputStream.read(buffer, 0, 1024)) != -1)
+            {
+                md.update(buffer, 0, length);
+            }
+            fileInputStream.close();
+            //转换并返回包含16个元素字节数组,返回数值范围为-128到127
+            byte[] md5Bytes = md.digest();
+            BigInteger bigInt = new BigInteger(1, md5Bytes);
+            return bigInt.toString(16);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    public static void write()          //验证两个文件并写入文件
+    {
+        //MD5文件应该放入c盘的用户某个路径下，隐藏起来让用户不能操作，这里只为了演示，放在了相对路径下
+        File file = new File("MD5.txt");
+        String student;     //student文件的散列值
+        String configuration;   //配置文件的散列值
+        student = getFileMD5("Student.dat");
+        configuration = getFileMD5("Configuration.ini");
+        FileWriter fileWriter = null;
+        try                                  //文件流打开，文件读写
+        {
+            fileWriter = new FileWriter(file);
+            fileWriter.write(student + "\n");
+            fileWriter.write(configuration + "\n");
+        }
+        catch (FileNotFoundException e)      //文件未找到
+        {
+            Toolkit.getDefaultToolkit().beep();
+            System.err.println("文件未找到！！！  " + "\n错误内容：" + e.toString());
+        }
+        catch (Exception e)                  //其它异常
+        {
+            Toolkit.getDefaultToolkit().beep();
+            e.printStackTrace();
+        }
+        finally
+        {
+            try                              //关闭流
+            {
+                if (fileWriter != null)
+                {
+                    fileWriter.close();
+                }
+            }
+            catch (NullPointerException e)    //空指针异常
+            {
+                Toolkit.getDefaultToolkit().beep();
+                System.err.println("文件已经被关闭，无法再次关闭！！！");
+            }
+            catch (Exception e)              //其它异常
+            {
+                Toolkit.getDefaultToolkit().beep();
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static boolean verification()            //验证数据
+    {
+        String student_MD5;
+        String configuration_MD5;
+        String student_file;
+        String configuration_file;
+        //从文件读：
+        File file = new File("MD5.txt");
+        if (!file.exists())
+        {
+            return false;
+        }
+        FileReader fileReader = null;
+        BufferedReader bufferedReader = null;
+        try                                  //文件流打开，文件读写
+        {
+            fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(fileReader);
+            student_file = bufferedReader.readLine();
+            configuration_file = bufferedReader.readLine();
+        }
+        catch (FileNotFoundException e)      //文件未找到
+        {
+            Toolkit.getDefaultToolkit().beep();
+            System.err.println("文件未找到！！！  " + "\n错误内容：" + e.toString());
+            return false;
+        }
+        catch (Exception e)                  //其它异常
+        {
+            Toolkit.getDefaultToolkit().beep();
+            e.printStackTrace();
+            return false;
+        }
+        finally
+        {
+            try                              //关闭流
+            {
+                if (fileReader != null)
+                {
+                    fileReader.close();
+                }
+                if (bufferedReader != null)
+                {
+                    bufferedReader.close();
+                }
+            }
+            catch (NullPointerException e)    //空指针异常
+            {
+                Toolkit.getDefaultToolkit().beep();
+                System.err.println("文件已经被关闭，无法再次关闭！！！");
+            }
+            catch (Exception e)              //其它异常
+            {
+                Toolkit.getDefaultToolkit().beep();
+                e.printStackTrace();
+            }
+        }
+        student_MD5 = getFileMD5("Student.dat");
+        configuration_MD5 = getFileMD5("Configuration.ini");
+        if (student_MD5.equals(""))
+        {
+            return false;
+        }
+        if (configuration_MD5.equals(""))
+        {
+            return false;
+        }
+        if (student_file == null)
+        {
+            return false;
+        }
+        if (configuration_file == null)
+        {
+            return false;
+        }
+        if (!student_MD5.equals(student_file))
+        {
+            return false;
+        }
+        if (!configuration_MD5.equals(configuration_file))
+        {
+            return false;
+        }
+        return true;
+    }
+}
+�
+H:\����\��������\�����ļ���������ѧ����Ϣ����ϵͳ\\src\\main\\java\\io\\Student.java
+package io;
+
+import data.Configuration;
+
+import java.awt.*;
+import java.io.*;
+import java.util.ArrayList;
+
+/**
+ * Project name(项目名称)：基于文件对象流的学生信息管理系统
+ * Package(包名): io
+ * Class(类名): Student
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2021/11/25
+ * Time(创建时间)： 22:11
+ * Version(版本): 1.0
+ * Description(描述)： 学生数据的输入和输出
+ */
+
+public class Student
+{
+    public static void write(Configuration config)
+    {
+        config.setSize();          //同步
+        File file = new File("Student.dat");
+        FileOutputStream fileOutputStream = null;
+        ObjectOutputStream objectOutputStream = null;
+        try                                  //文件流打开，文件读写
+        {
+            fileOutputStream = new FileOutputStream(file);
+            objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            for (int i = 0; i < Configuration.list.size(); i++)      //写入
+            {
+                objectOutputStream.writeObject(Configuration.list.get(i));
+            }
+
+        }
+        catch (FileNotFoundException e)      //文件未找到
+        {
+            Toolkit.getDefaultToolkit().beep();
+            System.err.println("文件未找到！！！  " + "\n错误内容：" + e.toString());
+        }
+        catch (Exception e)                  //其它异常
+        {
+            Toolkit.getDefaultToolkit().beep();
+            e.printStackTrace();
+        }
+        finally
+        {
+            try                              //关闭流
+            {
+                if (fileOutputStream != null)
+                {
+                    fileOutputStream.close();
+                }
+                if (objectOutputStream != null)
+                {
+                    objectOutputStream.close();
+                }
+            }
+            catch (NullPointerException e)    //空指针异常
+            {
+                Toolkit.getDefaultToolkit().beep();
+                System.err.println("文件已经被关闭，无法再次关闭！！！");
+            }
+            catch (Exception e)              //其它异常
+            {
+                Toolkit.getDefaultToolkit().beep();
+                e.printStackTrace();
+            }
+        }
+        //todo：同步配置文件和MD5文件 完成
+        //System.out.println("写："+config.getSize());
+        io.Configuration.write(config);
+        io.MD5.write();
+    }
+
+    public static data.Configuration read(Configuration config)
+    {
+        //todo：读配置文件，确保同步和更新 完成
+        //System.out.println("读1："+config.getSize());
+        config = io.Configuration.read();  //再次读入确保同步
+        //System.out.println("读2："+config.getSize());
+        if (config == null)                 //确保数据正常
+        {
+            Toolkit.getDefaultToolkit().beep();
+            System.out.println("配置文件读取异常");
+            System.exit(1);
+        }
+        //System.out.println("配置文件："+config.getSize());
+        ArrayList<data.Student> list1 = new ArrayList<>();
+        File file = new File("Student.dat");
+        FileInputStream fileInputStream = null;
+        ObjectInputStream ObjectInputStream = null;
+        try                                  //文件流打开，文件读写
+        {
+            fileInputStream = new FileInputStream(file);
+            ObjectInputStream = new ObjectInputStream(fileInputStream);
+            for (int i = 0; i < config.getSize(); i++)
+            {
+                data.Student student = (data.Student) ObjectInputStream.readObject();
+                list1.add(student);
+            }
+            Configuration.list = list1;
+            System.gc();
+        }
+        catch (FileNotFoundException e)      //文件未找到
+        {
+            Toolkit.getDefaultToolkit().beep();
+            System.err.println("文件未找到！！！  " + "\n错误内容：" + e.toString());
+        }
+        catch (Exception e)                  //其它异常
+        {
+            Toolkit.getDefaultToolkit().beep();
+            e.printStackTrace();
+        }
+        finally
+        {
+            try                              //关闭流
+            {
+                if (fileInputStream != null)
+                {
+                    fileInputStream.close();
+                }
+                if (ObjectInputStream != null)
+                {
+                    ObjectInputStream.close();
+                }
+            }
+            catch (NullPointerException e)    //空指针异常
+            {
+                Toolkit.getDefaultToolkit().beep();
+                System.err.println("文件已经被关闭，无法再次关闭！！！");
+            }
+            catch (Exception e)              //其它异常
+            {
+                Toolkit.getDefaultToolkit().beep();
+                e.printStackTrace();
+            }
+        }
+        return config;
+    }
+}
+�
+H:\����\��������\�����ļ���������ѧ����Ϣ����ϵͳ\\src\\main\\java\\io\\Unit_Test.java
+package io;
+
+import SHA.MD5;
+import SHA.SHA3_512;
+import data.Student;
+
+/**
+ * Project name(项目名称)：基于文件对象流的学生信息管理系统
+ * Package(包名): io
+ * Class(类名): Unit_Test
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2021/11/26
+ * Time(创建时间)： 15:58
+ * Version(版本): 1.0
+ * Description(描述)： 无
+ */
+
+public class Unit_Test
+{
+    public static void main(String[] args)
+    {
+        /*
+        io.Log.write("管理员","增加数据");
+        io.Log.display();
+         */
+        data.Configuration configuration = new data.Configuration();
+        configuration.setSize();
+        configuration.setPassword_SHA3_512(SHA3_512.getSHA3_512("123"));
+        configuration.setUsername_MD5(MD5.getMD5("mao"));
+        io.Configuration.write(configuration);                          //这里写了一次
+        data.Configuration configuration1 = io.Configuration.read();
+        System.out.println(configuration1.getSize());
+        System.out.println(configuration1.getUsername_MD5());
+        System.out.println(configuration1.getPassword_SHA3_512());
+        Student student = new Student(123, "张三", "男", 18, "计算机",
+                2.3f, "18756478562", "2001-02-09", "湖南省");
+        Student student1 = new Student(1234, "张三", "男", 18, "计算机",
+                2.3f, "18756478562", "2001-02-09", "湖南省");
+        configuration1 = io.Student.read(configuration1);
+        for (int i = 0; i < data.Configuration.list.size(); i++)
+        {
+            System.out.println(data.Configuration.list.get(i));
+        }
+        data.Configuration.list.add(student);
+        data.Configuration.list.add(student1);
+        for (int i = 0; i < data.Configuration.list.size(); i++)
+        {
+            System.out.println(data.Configuration.list.get(i));
+        }
+        io.Student.write(configuration1);
+
+        System.out.println(configuration1.getSize());
+        System.out.println(configuration1.getUsername_MD5());
+        System.out.println(configuration1.getPassword_SHA3_512());
+    }
+}
+�
+H:\����\��������\�����ļ���������ѧ����Ϣ����ϵͳ\\src\\main\\java\\operating\\Function.java
+package operating;
+
+import data.Configuration;
+import data.Student;
+
+import java.awt.*;
+import java.util.Scanner;
+
+/**
+ * Project name(项目名称)：基于文件对象流的学生信息管理系统
+ * Package(包名): operating
+ * Class(类名): Function
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2021/11/26
+ * Time(创建时间)： 19:05
+ * Version(版本): 1.0
+ * Description(描述)： 无
+ */
+
+public class Function implements Student_Function
+{
+    public static Configuration config;
+
+    private static long startTime;
+    private static long endTime;
+
+    public static void start()
+    {
+        startTime = System.nanoTime();   //获取开始时间
+    }
+
+    @SuppressWarnings("all")
+    public static void end()
+    {
+        endTime = System.nanoTime();     //获取结束时间
+        if ((endTime - startTime) < 1000000)
+        {
+            double final_runtime;
+            final_runtime = (endTime - startTime);
+            final_runtime = final_runtime / 1000;
+            System.out.println("运行时间： " + final_runtime + "微秒");
+        }
+        else if ((endTime - startTime) >= 1000000 && (endTime - startTime) < 10000000000L)
+        {
+            double final_runtime;
+            final_runtime = (endTime - startTime) / 1000;
+            final_runtime = final_runtime / 1000;
+            System.out.println("运行时间： " + final_runtime + "毫秒");
+        }
+        else
+        {
+            double final_runtime;
+            final_runtime = (endTime - startTime) / 10000;
+            final_runtime = final_runtime / 100000;
+            System.out.println("运行时间： " + final_runtime + "秒");
+        }
+        Runtime r = Runtime.getRuntime();
+        float memory;
+        memory = r.totalMemory();
+        memory = memory / 1024 / 1024;
+        //System.out.printf("JVM总内存：%.3fMB\n", memory);
+        memory = r.freeMemory();
+        memory = memory / 1024 / 1024;
+        //System.out.printf(" 空闲内存：%.3fMB\n", memory);
+        memory = r.totalMemory() - r.freeMemory();
+        memory = memory / 1024 / 1024;
+        System.out.printf("已使用的内存：%.4fMB\n", memory);
+    }
+
+    @Override
+    public void insert()
+    {
+        start();
+        Scanner input = new Scanner(System.in);
+        long no;      //学号
+        String name;  //名字
+        String sex;   //性别
+        int age;      //年龄
+        String classes; //所在班级，class与关键字起冲突
+        float GPA;      //平均学分绩点
+        String number;  //电话号码
+        String birthday; //生日
+        String address;  //家庭地址
+        //控制台输入变量:no
+        int errCount = 0;
+        while (true)
+        {
+            try
+            {
+                //min:0
+                //max:999999999999999999
+                System.out.print("请输入学号：");
+                no = input.nextLong();
+                if (no >= 0 && no <= 999999999999999999L)
+                {
+                    break;
+                }
+                else
+                {
+                    errCount++;
+                    Toolkit.getDefaultToolkit().beep();
+                    if (errCount > 10)
+                    {
+                        System.err.println("错误次数过多！！！退出");
+                        System.exit(1);
+                    }
+                    System.out.println("输入的数据不在范围内! 范围：[0,999999999999999999]");
+                }
+            }
+            catch (Exception e)
+            {
+                errCount++;
+                if (errCount > 5)
+                {
+                    Toolkit.getDefaultToolkit().beep();
+                    System.err.println("错误次数过多！！！退出");
+                    System.exit(1);
+                }
+                else
+                {
+                    Toolkit.getDefaultToolkit().beep();
+                    System.out.println("输入错误！！！请重新输入！");
+                    input.nextLine();
+                }
+            }
+        }
+        //姓名
+        while (true)
+        {
+            System.out.print("请输入姓名：");
+            name = input.next();
+            if (name.length() >= 10)
+            {
+                System.out.println("名字长度太长，长度应该小于10！！！请重新输入！");
+            }
+            else
+            {
+                break;
+            }
+        }
+        //性别
+        while (true)
+        {
+            System.out.print("请输入性别：");
+            sex = input.next();
+            if (sex.equals("男"))
+            {
+                break;
+            }
+            else if (sex.equals("女"))
+            {
+                break;
+            }
+            else
+            {
+                Toolkit.getDefaultToolkit().beep();
+                System.out.println("性别只能是男或者女，输入错误！请重新输入！！！");
+            }
+        }
+        //年龄
+        //控制台输入变量:age
+        errCount = 0;
+        while (true)
+        {
+            try
+            {
+                //min:0
+                //max:100
+                System.out.print("请输入年龄：");
+                age = input.nextInt();
+                if (age >= 0 && age <= 100)
+                {
+                    break;
+                }
+                else
+                {
+                    errCount++;
+                    Toolkit.getDefaultToolkit().beep();
+                    if (errCount > 10)
+                    {
+                        System.err.println("错误次数过多！！！退出");
+                        System.exit(1);
+                    }
+                    System.out.println("输入的数据不在范围内! 范围：[0,100]");
+                }
+            }
+            catch (Exception e)
+            {
+                errCount++;
+                if (errCount > 5)
+                {
+                    Toolkit.getDefaultToolkit().beep();
+                    System.err.println("错误次数过多！！！退出");
+                    System.exit(1);
+                }
+                else
+                {
+                    Toolkit.getDefaultToolkit().beep();
+                    System.out.println("输入错误！！！请重新输入！");
+                    input.nextLine();
+                }
+            }
+        }
+        //班级
+        System.out.print("请输入班级：");
+        classes = input.next();
+        //平均学分绩点
+        //控制台输入变量:GPA
+        errCount = 0;
+        while (true)
+        {
+            try
+            {
+                //min:0
+                //max:5.0
+                System.out.print("请输入平均学分绩点：");
+                GPA = input.nextFloat();
+                if (GPA >= 0 && GPA <= 5.0)
+                {
+                    break;
+                }
+                else
+                {
+                    errCount++;
+                    Toolkit.getDefaultToolkit().beep();
+                    if (errCount > 10)
+                    {
+                        System.err.println("错误次数过多！！！退出");
+                        System.exit(1);
+                    }
+                    System.out.println("输入的数据不在范围内! 范围：[0,5.0]");
+                }
+            }
+            catch (Exception e)
+            {
+                errCount++;
+                if (errCount > 5)
+                {
+                    Toolkit.getDefaultToolkit().beep();
+                    System.err.println("错误次数过多！！！退出");
+                    System.exit(1);
+                }
+                else
+                {
+                    Toolkit.getDefaultToolkit().beep();
+                    System.out.println("输入错误！！！请重新输入！");
+                    input.nextLine();
+                }
+            }
+        }
+        //电话号码
+        while (true)
+        {
+            System.out.print("请输入新的电话号码：");
+            number = input.next();
+            if (number.length() >= 12)
+            {
+                System.out.println("输入错误！电话号码应该最多为11位！请重新输入");
+            }
+            else
+            {
+                break;
+            }
+        }
+        //生日
+        System.out.println("开始输入生日信息");
+        {
+            int year;
+            int month;
+            int day;
+            //控制台输入变量:year
+            errCount = 0;
+            while (true)
+            {
+                try
+                {
+                    //min:1000
+                    //max:3000
+                    System.out.print("请输入年：");
+                    year = input.nextInt();
+                    if (year >= 1000 && year <= 3000)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        errCount++;
+                        Toolkit.getDefaultToolkit().beep();
+                        if (errCount > 10)
+                        {
+                            System.err.println("错误次数过多！！！退出");
+                            System.exit(1);
+                        }
+                        System.out.println("输入的数据不在范围内! 范围：[1000,3000]");
+                    }
+                }
+                catch (Exception e)
+                {
+                    errCount++;
+                    if (errCount > 5)
+                    {
+                        Toolkit.getDefaultToolkit().beep();
+                        System.err.println("错误次数过多！！！退出");
+                        System.exit(1);
+                    }
+                    else
+                    {
+                        Toolkit.getDefaultToolkit().beep();
+                        System.out.println("输入错误！！！请重新输入！");
+                        input.nextLine();
+                    }
+                }
+            }
+            //控制台输入变量:month
+            errCount = 0;
+            while (true)
+            {
+                try
+                {
+                    //min:1
+                    //max:12
+                    System.out.print("请输入月：");
+                    month = input.nextInt();
+                    if (month >= 1 && month <= 12)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        errCount++;
+                        Toolkit.getDefaultToolkit().beep();
+                        if (errCount > 10)
+                        {
+                            System.err.println("错误次数过多！！！退出");
+                            System.exit(1);
+                        }
+                        System.out.println("输入的数据不在范围内! 范围：[1,12]");
+                    }
+                }
+                catch (Exception e)
+                {
+                    errCount++;
+                    if (errCount > 5)
+                    {
+                        Toolkit.getDefaultToolkit().beep();
+                        System.err.println("错误次数过多！！！退出");
+                        System.exit(1);
+                    }
+                    else
+                    {
+                        Toolkit.getDefaultToolkit().beep();
+                        System.out.println("输入错误！！！请重新输入！");
+                        input.nextLine();
+                    }
+                }
+            }
+            //控制台输入变量:day
+            errCount = 0;
+            while (true)
+            {
+                try
+                {
+                    //min:1
+                    //max:31
+                    System.out.print("请输入日：");
+                    day = input.nextInt();
+                    if (day >= 1 && day <= 31)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        errCount++;
+                        Toolkit.getDefaultToolkit().beep();
+                        if (errCount > 10)
+                        {
+                            System.err.println("错误次数过多！！！退出");
+                            System.exit(1);
+                        }
+                        System.out.println("输入的数据不在范围内! 范围：[1,31]");
+                    }
+                }
+                catch (Exception e)
+                {
+                    errCount++;
+                    if (errCount > 5)
+                    {
+                        Toolkit.getDefaultToolkit().beep();
+                        System.err.println("错误次数过多！！！退出");
+                        System.exit(1);
+                    }
+                    else
+                    {
+                        Toolkit.getDefaultToolkit().beep();
+                        System.out.println("输入错误！！！请重新输入！");
+                        input.nextLine();
+                    }
+                }
+            }
+            birthday = year + "-" + month + "-" + day;
+        }
+        //家庭地址
+        System.out.print("请输入家庭地址：");
+        address = input.next();
+        //写入对象
+        Student student = new Student();
+        student.setNo(no);
+        student.setName(name);
+        student.setSex(sex);
+        student.setAge(age);
+        student.setClasses(classes);
+        student.setGPA(GPA);
+        student.setNumber(number);
+        student.setBirthday(birthday);
+        student.setAddress(address);
+        //检查是否有相同的数据
+        for (int i = 0; i < Configuration.list.size(); i++)
+        {
+            if (student.equals(Configuration.list.get(i)))
+            {
+                //相同
+                Toolkit.getDefaultToolkit().beep();
+                System.out.println("输入的数据和已经存在的数据相同，写入失败！！！");
+                return;
+            }
+        }
+        //检查主键学号是否唯一，因为一个学号对应一个学生，前面的检查是检查所有的数据，这次只是检查学号信息，
+        // 这样前面的检查显得多此一举？没办法，前后检查的算法运行时间差距很大
+        for (Student student1 : data.Configuration.list)
+        {
+            if (student.getNo() == student1.getNo())
+            {
+                System.out.println("主键不唯一！！！");
+                System.out.println("输入的数据：");
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                System.out.println("已经存在的数据：");
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student1.getNo(), student1.getName(),
+                        student1.getSex(), student1.getAge(), student1.getClasses(), student1.getGPA(), student1.getNumber(),
+                        student1.getBirthday(), student1.getAddress());
+                return;
+            }
+        }
+        //添加到数据
+        Configuration.list.add(student);
+        //写入文件
+        io.Student.write(config);
+        end();
+    }
+
+    @Override
+    public void display()        //输出
+    {
+        start();
+        if (Configuration.list.size() == 0)
+        {
+            System.out.println("空");
+        }
+        else
+        {
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", "学号", "姓名",
+                    "性别", "年龄", "所在班级", "平均学分绩点", "电话号码",
+                    "生日", "家庭地址");
+            int count = 0;
+            for (Student student : Configuration.list)
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                count++;
+            }
+            System.out.println("一共" + count + "条记录");
+        }
+        end();
+    }
+
+    @Override
+    public void global_search()
+    {
+        String keyword;
+        Scanner input = new Scanner(System.in);
+        System.out.print("请输入搜索关键字：");
+        keyword = input.next();
+        Student student;
+        int index;
+        int count = 0;
+        for (int i = 0; i < Configuration.list.size(); i++)
+        {
+            student = data.Configuration.list.get(i);
+            if (student.toString_search().contains(keyword))
+            {
+                System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                        student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                        student.getBirthday(), student.getAddress());
+                index = student.toString_search().indexOf(keyword);
+                System.out.println("\t\t出现的索引位置：" + index);
+                count++;
+            }
+        }
+        System.out.println("一共" + count + "条记录");
+    }
+
+    @Override
+    public void alter()
+    {
+        Scanner input = new Scanner(System.in);
+        long no;
+        //控制台输入变量:no
+        int errCount = 0;
+        while (true)
+        {
+            try
+            {
+                //min:0
+                //max:999999999999999999
+                System.out.print("请输入要修改的学生的学号：");
+                no = input.nextLong();
+                if (no >= 0 && no <= 999999999999999999L)
+                {
+                    break;
+                }
+                else
+                {
+                    errCount++;
+                    Toolkit.getDefaultToolkit().beep();
+                    if (errCount > 10)
+                    {
+                        System.err.println("错误次数过多！！！退出");
+                        System.exit(1);
+                    }
+                    System.out.println("输入的数据不在范围内! 范围：[0,999999999999999999]");
+                }
+            }
+            catch (Exception e)
+            {
+                errCount++;
+                if (errCount > 5)
+                {
+                    Toolkit.getDefaultToolkit().beep();
+                    System.err.println("错误次数过多！！！退出");
+                    System.exit(1);
+                }
+                else
+                {
+                    Toolkit.getDefaultToolkit().beep();
+                    System.out.println("输入错误！！！请重新输入！");
+                    input.nextLine();
+                }
+            }
+        }
+        Student student = null;
+        int index = -1;
+        for (int i = 0; i < Configuration.list.size(); i++)
+        {
+            student = data.Configuration.list.get(i);
+            if (student.getNo() == no)
+            {
+                index = i;
+                break;
+            }
+        }
+        if (index == -1)
+        {
+            Toolkit.getDefaultToolkit().beep();
+            System.out.println("未找到此学生的学号");
+            return;
+        }
+        else
+        {
+            System.out.println("已找到，位于第" + index + "个位置，学生数据如下：");
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                    student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                    student.getBirthday(), student.getAddress());
+        }
+
+        System.out.println("""
+                1.学号           2.姓名      3.性别   4.年龄     5.所在班级
+                6.平均学分绩点    7.电话号码   8.生日   9.家庭地址  10.返回到主菜单""");
+        int serialNumber;
+        //控制台输入变量:serialNumber
+        errCount = 0;
+        while (true)
+        {
+            try
+            {
+                //min:1
+                //max:10
+                System.out.print("请输入序号：");
+                serialNumber = input.nextInt();
+                if (serialNumber >= 1 && serialNumber <= 10)
+                {
+                    break;
+                }
+                else
+                {
+                    errCount++;
+                    Toolkit.getDefaultToolkit().beep();
+                    if (errCount > 10)
+                    {
+                        System.err.println("错误次数过多！！！退出");
+                        System.exit(1);
+                    }
+                    System.out.println("输入的数据不在范围内! 范围：[1,10]");
+                }
+            }
+            catch (Exception e)
+            {
+                errCount++;
+                if (errCount > 5)
+                {
+                    Toolkit.getDefaultToolkit().beep();
+                    System.err.println("错误次数过多！！！退出");
+                    System.exit(1);
+                }
+                else
+                {
+                    Toolkit.getDefaultToolkit().beep();
+                    System.out.println("输入错误！！！请重新输入！");
+                    input.nextLine();
+                }
+            }
+        }
+        if (serialNumber == 1)             //学号
+        {
+            long new_no;
+            //控制台输入变量:new_no
+            errCount = 0;
+            while (true)
+            {
+                try
+                {
+                    //min:0
+                    //max:999999999999999999
+                    System.out.print("请输入新的学号：");
+                    new_no = input.nextLong();
+                    if (new_no >= 0 && new_no <= 999999999999999999L)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        errCount++;
+                        Toolkit.getDefaultToolkit().beep();
+                        if (errCount > 10)
+                        {
+                            System.err.println("错误次数过多！！！退出");
+                            System.exit(1);
+                        }
+                        System.out.println("输入的数据不在范围内! 范围：[0,999999999999999999]");
+                    }
+                }
+                catch (Exception e)
+                {
+                    errCount++;
+                    if (errCount > 5)
+                    {
+                        Toolkit.getDefaultToolkit().beep();
+                        System.err.println("错误次数过多！！！退出");
+                        System.exit(1);
+                    }
+                    else
+                    {
+                        Toolkit.getDefaultToolkit().beep();
+                        System.out.println("输入错误！！！请重新输入！");
+                        input.nextLine();
+                    }
+                }
+            }
+            //验证
+            for (Student student1 : data.Configuration.list)
+            {
+                if (new_no == student1.getNo())
+                {
+                    Toolkit.getDefaultToolkit().beep();
+                    System.out.println("学号冲突，主键不唯一！！！");
+                    System.out.println("已经存在的数据：");
+                    System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student1.getNo(), student1.getName(),
+                            student1.getSex(), student1.getAge(), student1.getClasses(), student1.getGPA(), student1.getNumber(),
+                            student1.getBirthday(), student1.getAddress());
+                    System.out.println("修改失败！！！");
+                    return;
+                }
+            }
+            student.setNo(new_no);
+            System.out.println("修改成功，新数据如下：");
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                    student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                    student.getBirthday(), student.getAddress());
+            io.Student.write(config);       //写入到文件
+        }
+        else if (serialNumber == 2)         //名字
+        {
+            String new_name;
+            while (true)
+            {
+                System.out.print("请输入新的姓名：");
+                new_name = input.next();
+                if (new_name.length() >= 10)
+                {
+                    System.out.println("名字长度太长，长度应该小于10！！！请重新输入！");
+                }
+                else
+                {
+                    break;
+                }
+            }
+            student.setName(new_name);
+            System.out.println("修改成功，新数据如下：");
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                    student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                    student.getBirthday(), student.getAddress());
+            io.Student.write(config);       //写入到文件
+        }
+        else if (serialNumber == 3)        //性别
+        {
+            String new_sex;
+            while (true)
+            {
+                System.out.print("请输入新的性别：");
+                new_sex = input.next();
+                if (new_sex.equals("男"))
+                {
+                    break;
+                }
+                else if (new_sex.equals("女"))
+                {
+                    break;
+                }
+                else
+                {
+                    Toolkit.getDefaultToolkit().beep();
+                    System.out.println("性别只能是男或者女，输入错误！请重新输入！！！");
+                }
+            }
+            student.setSex(new_sex);
+            System.out.println("修改成功，新数据如下：");
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                    student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                    student.getBirthday(), student.getAddress());
+            io.Student.write(config);       //写入到文件
+        }
+        else if (serialNumber == 4)        //年龄
+        {
+            int new_age;
+            //控制台输入变量:new_age
+            errCount = 0;
+            while (true)
+            {
+                try
+                {
+                    //min:0
+                    //max:100
+                    System.out.print("请输入新的年龄：");
+                    new_age = input.nextInt();
+                    if (new_age >= 0 && new_age <= 100)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        errCount++;
+                        Toolkit.getDefaultToolkit().beep();
+                        if (errCount > 10)
+                        {
+                            System.err.println("错误次数过多！！！退出");
+                            System.exit(1);
+                        }
+                        System.out.println("输入的数据不在范围内! 范围：[0,100]");
+                    }
+                }
+                catch (Exception e)
+                {
+                    errCount++;
+                    if (errCount > 5)
+                    {
+                        Toolkit.getDefaultToolkit().beep();
+                        System.err.println("错误次数过多！！！退出");
+                        System.exit(1);
+                    }
+                    else
+                    {
+                        Toolkit.getDefaultToolkit().beep();
+                        System.out.println("输入错误！！！请重新输入！");
+                        input.nextLine();
+                    }
+                }
+            }
+            student.setAge(new_age);
+            System.out.println("修改成功，新数据如下：");
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                    student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                    student.getBirthday(), student.getAddress());
+            io.Student.write(config);       //写入到文件
+        }
+        else if (serialNumber == 5)          //所在班级
+        {
+            String new_class;
+            System.out.print("请输入新的班级：");
+            new_class = input.next();
+            student.setClasses(new_class);
+            System.out.println("修改成功，新数据如下：");
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                    student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                    student.getBirthday(), student.getAddress());
+            io.Student.write(config);       //写入到文件
+        }
+        else if (serialNumber == 6)           //平均学分绩点
+        {
+            float new_GPA;
+            //控制台输入变量:new_GPA
+            errCount = 0;
+            while (true)
+            {
+                try
+                {
+                    //min:0
+                    //max:5.0
+                    System.out.print("请输入新的平均学分绩点：");
+                    new_GPA = input.nextFloat();
+                    if (new_GPA >= 0 && new_GPA <= 5.0)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        errCount++;
+                        Toolkit.getDefaultToolkit().beep();
+                        if (errCount > 10)
+                        {
+                            System.err.println("错误次数过多！！！退出");
+                            System.exit(1);
+                        }
+                        System.out.println("输入的数据不在范围内! 范围：[0,5.0]");
+                    }
+                }
+                catch (Exception e)
+                {
+                    errCount++;
+                    if (errCount > 5)
+                    {
+                        Toolkit.getDefaultToolkit().beep();
+                        System.err.println("错误次数过多！！！退出");
+                        System.exit(1);
+                    }
+                    else
+                    {
+                        Toolkit.getDefaultToolkit().beep();
+                        System.out.println("输入错误！！！请重新输入！");
+                        input.nextLine();
+                    }
+                }
+            }
+            student.setGPA(new_GPA);
+            System.out.println("修改成功，新数据如下：");
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                    student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                    student.getBirthday(), student.getAddress());
+            io.Student.write(config);       //写入到文件
+        }
+        else if (serialNumber == 7)          //电话号码
+        {
+            String new_number;
+            while (true)
+            {
+                System.out.print("请输入新的电话号码：");
+                new_number = input.next();
+                if (new_number.length() >= 12)
+                {
+                    System.out.println("输入错误！电话号码应该最多为11位！请重新输入");
+                }
+                else
+                {
+                    break;
+                }
+            }
+            student.setNumber(new_number);
+            System.out.println("修改成功，新数据如下：");
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                    student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                    student.getBirthday(), student.getAddress());
+            io.Student.write(config);       //写入到文件
+        }
+        else if (serialNumber == 8)          //生日
+        {
+            String new_birthday;
+            System.out.println("开始输入新的生日信息");
+            {
+                int year;
+                int month;
+                int day;
+                //控制台输入变量:year
+                errCount = 0;
+                while (true)
+                {
+                    try
+                    {
+                        //min:1000
+                        //max:3000
+                        System.out.print("请输入年：");
+                        year = input.nextInt();
+                        if (year >= 1000 && year <= 3000)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            errCount++;
+                            Toolkit.getDefaultToolkit().beep();
+                            if (errCount > 10)
+                            {
+                                System.err.println("错误次数过多！！！退出");
+                                System.exit(1);
+                            }
+                            System.out.println("输入的数据不在范围内! 范围：[1000,3000]");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        errCount++;
+                        if (errCount > 5)
+                        {
+                            Toolkit.getDefaultToolkit().beep();
+                            System.err.println("错误次数过多！！！退出");
+                            System.exit(1);
+                        }
+                        else
+                        {
+                            Toolkit.getDefaultToolkit().beep();
+                            System.out.println("输入错误！！！请重新输入！");
+                            input.nextLine();
+                        }
+                    }
+                }
+                //控制台输入变量:month
+                errCount = 0;
+                while (true)
+                {
+                    try
+                    {
+                        //min:1
+                        //max:12
+                        System.out.print("请输入月：");
+                        month = input.nextInt();
+                        if (month >= 1 && month <= 12)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            errCount++;
+                            Toolkit.getDefaultToolkit().beep();
+                            if (errCount > 10)
+                            {
+                                System.err.println("错误次数过多！！！退出");
+                                System.exit(1);
+                            }
+                            System.out.println("输入的数据不在范围内! 范围：[1,12]");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        errCount++;
+                        if (errCount > 5)
+                        {
+                            Toolkit.getDefaultToolkit().beep();
+                            System.err.println("错误次数过多！！！退出");
+                            System.exit(1);
+                        }
+                        else
+                        {
+                            Toolkit.getDefaultToolkit().beep();
+                            System.out.println("输入错误！！！请重新输入！");
+                            input.nextLine();
+                        }
+                    }
+                }
+                //控制台输入变量:day
+                errCount = 0;
+                while (true)
+                {
+                    try
+                    {
+                        //min:1
+                        //max:31
+                        System.out.print("请输入日：");
+                        day = input.nextInt();
+                        if (day >= 1 && day <= 31)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            errCount++;
+                            Toolkit.getDefaultToolkit().beep();
+                            if (errCount > 10)
+                            {
+                                System.err.println("错误次数过多！！！退出");
+                                System.exit(1);
+                            }
+                            System.out.println("输入的数据不在范围内! 范围：[1,31]");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        errCount++;
+                        if (errCount > 5)
+                        {
+                            Toolkit.getDefaultToolkit().beep();
+                            System.err.println("错误次数过多！！！退出");
+                            System.exit(1);
+                        }
+                        else
+                        {
+                            Toolkit.getDefaultToolkit().beep();
+                            System.out.println("输入错误！！！请重新输入！");
+                            input.nextLine();
+                        }
+                    }
+                }
+                new_birthday = year + "-" + month + "-" + day;
+            }
+            student.setBirthday(new_birthday);
+            System.out.println("修改成功，新数据如下：");
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                    student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                    student.getBirthday(), student.getAddress());
+            io.Student.write(config);       //写入到文件
+        }
+        else if (serialNumber == 9)          //家庭地址
+        {
+            String new_address;
+            System.out.print("请输入新的家庭地址：");
+            new_address = input.next();
+            System.out.println("修改成功，新数据如下：");
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                    student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                    student.getBirthday(), student.getAddress());
+            io.Student.write(config);       //写入到文件
+        }
+        else
+        {
+            System.out.println("返回到主菜单");
+        }
+    }
+
+    @Override
+    public void delete()             //删除
+    {
+
+    }
+
+    @Override
+    public void sort()
+    {
+
+    }
+
+    @Override
+    public void changePassword()
+    {
+
+    }
+}
+�
+H:\����\��������\�����ļ���������ѧ����Ϣ����ϵͳ\\src\\main\\java\\operating\\Student_Function.java
+package operating;
+
+/**
+ * Project name(项目名称)：基于文件对象流的学生信息管理系统
+ * Package(包名): operating
+ * Interface(接口名): Student_Function
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2021/11/26
+ * Time(创建时间)： 22:04
+ * Version(版本): 1.0
+ * Description(描述)： 无
+ */
+
+public interface Student_Function
+{
+    public void insert();
+
+    public void display();
+
+    public void global_search();
+
+    public void alter();
+
+    public void delete();
+
+    public void sort();
+
+    public void changePassword();
+
+}
+�
+H:\����\��������\�����ļ���������ѧ����Ϣ����ϵͳ\\src\\main\\java\\operating\\Unit_Test.java
+package operating;
+
+/**
+ * Project name(项目名称)：基于文件对象流的学生信息管理系统
+ * Package(包名): operating
+ * Class(类名): Unit_Test
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2021/11/26
+ * Time(创建时间)： 19:36
+ * Version(版本): 1.0
+ * Description(描述)： 无
+ */
+
+public class Unit_Test
+{
+    public static void main(String[] args)
+    {
+        Function f=new Function();
+        System.out.println("""
+                1.学号           2.姓名      3.性别   4.年龄     5.所在班级
+                6.平均学分绩点    7.电话号码   8.生日   9.家庭地址  10.返回到主菜单""");
+        f.display();
+        Function.config=io.Student.read(Function.config);
+       // Function.insert();
+        f.display();
+        System.out.println("""
+                1.学号  2.姓名  3.性别  4.年龄  5.所在班级  6.平均学分绩点  7.电话号码  8.生日  9.家庭地址  10.返回到主菜单""");
+    }
+}
+�
+H:\����\��������\�����ļ���������ѧ����Ϣ����ϵͳ\\src\\main\\java\\SHA\\MD5.java
+package SHA;
+
+/**
+ * Project name(项目名称)：基于文件对象流的学生信息管理系统
+ * Package(包名): SHA
+ * Class(类名): MD5
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2021/11/25
+ * Time(创建时间)： 21:38
+ * Version(版本): 1.0
+ * Description(描述)： 散列算法 MD5
+ */
+
+public class MD5
+{
+    //存储小组
+    //private long[] groups = null;
+    //存储结果
+    private String resultMessage = "";
+
+    //四个寄存器的初始向量IV,采用小端存储
+    private static final long A = 0x67452301L;
+    private static final long B = 0xefcdab89L;
+    private static final long C = 0x98badcfeL;
+    private static final long D = 0x10325476L;
+
+    //java不支持无符号的基本数据(unsigned),所以选用long数据类型
+    private long[] result = {A, B, C, D};
+
+    private static final long[][] T =
+            {
+                    {0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee,
+                            0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501,
+                            0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be,
+                            0x6b901122, 0xfd987193, 0xa679438e, 0x49b40821},
+
+                    {0xf61e2562, 0xc040b340, 0x265e5a51, 0xe9b6c7aa,
+                            0xd62f105d, 0x02441453, 0xd8a1e681, 0xe7d3fbc8,
+                            0x21e1cde6, 0xc33707d6, 0xf4d50d87, 0x455a14ed,
+                            0xa9e3e905, 0xfcefa3f8, 0x676f02d9, 0x8d2a4c8a},
+
+                    {0xfffa3942, 0x8771f681, 0x6d9d6122, 0xfde5380c,
+                            0xa4beea44, 0x4bdecfa9, 0xf6bb4b60, 0xbebfbc70,
+                            0x289b7ec6, 0xeaa127fa, 0xd4ef3085, 0x04881d05,
+                            0xd9d4d039, 0xe6db99e5, 0x1fa27cf8, 0xc4ac5665},
+
+                    {0xf4292244, 0x432aff97, 0xab9423a7, 0xfc93a039,
+                            0x655b59c3, 0x8f0ccc92, 0xffeff47d, 0x85845dd1,
+                            0x6fa87e4f, 0xfe2ce6e0, 0xa3014314, 0x4e0811a1,
+                            0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391}
+            };
+    //表示X[k]中的的k取值，决定如何使用消息分组中的字
+    private static final int[][] k =
+            {
+                    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15},
+                    {1, 6, 11, 0, 5, 10, 15, 4, 9, 14, 3, 8, 13, 2, 7, 12},
+                    {5, 8, 11, 14, 1, 4, 7, 10, 13, 0, 3, 6, 9, 12, 15, 2},
+                    {0, 7, 14, 5, 12, 3, 10, 1, 8, 15, 6, 13, 4, 11, 2, 9}
+            };
+
+    //各次迭代中采用的做循环移位的s值
+    private static final int[][] S =
+            {
+                    {7, 12, 17, 22},
+                    {5, 9, 14, 20},
+                    {4, 11, 16, 23},
+                    {6, 10, 15, 21}
+            };
+
+    //4轮循环中使用的生成函数(轮函数)g
+    private static long g(int i, long b, long c, long d)
+    {
+        switch (i)
+        {
+            case 0:
+                return (b & c) | ((~b) & d);
+            case 1:
+                return (b & d) | (c & (~d));
+            case 2:
+                return b ^ c ^ d;
+            case 3:
+                return c ^ (b | (~d));
+            default:
+                return 0;
+        }
+    }
+
+    //开始使用MD5加密
+    private String start(String message)
+    {
+        //转化为字节数组
+        byte[] inputBytes = message.getBytes();
+        //6A 61 6E 6b 69 6e 67
+        //获取字节数组的长度
+        int byteLen = inputBytes.length;
+        //得到K值（以bit作单位的message长度）
+        long K = (long) (byteLen << 3);
+        //完整小组(512bit)(64byte)的个数
+        int groupCount = byteLen / 64;
+
+        //分块
+        for (int i = 0; i < groupCount; i++)
+        {
+            //每次取512bit
+            //处理一个分组
+            H(divide(inputBytes, i * 64));
+        }
+
+        //填充
+        int rest = byteLen % 64;
+        //即将填充的一个分组
+        byte[] paddingBytes = new byte[64];
+        //原来的尾部数据
+        for (int i = 0; i < rest; i++)
+        {
+            paddingBytes[i] = inputBytes[byteLen - rest + i];
+        }
+        //即小于448bit的情况，先填充100...0再填充K值的低64位
+        //此时只会新增一个分组
+        if (rest <= 56)
+        {
+            //填充100...0
+            if (rest < 56)
+            {
+                //填充10000000
+                paddingBytes[rest] = (byte) (1 << 7);
+                //填充00000000
+                for (int i = 1; i < 56 - rest; i++)
+                {
+                    paddingBytes[rest + i] = 0;
+                }
+            }
+            //填充K值低64位
+            for (int i = 0; i < 8; i++)
+            {
+                paddingBytes[56 + i] = (byte) (K & 0xFFL);
+                K = K >> 8;
+            }
+            //处理分组
+            H(divide(paddingBytes, 0));
+            //即大于448bit的情况，先填充100...0再填充K值的低64位
+            //此时会新增两个分组
+        }
+        else
+        {
+            //填充10000000
+            paddingBytes[rest] = (byte) (1 << 7);
+            //填充00000000
+            for (int i = rest + 1; i < 64; i++)
+            {
+                paddingBytes[i] = 0;
+            }
+            //处理第一个尾部分组
+            H(divide(paddingBytes, 0));
+
+            //填充00000000
+            for (int i = 0; i < 56; i++)
+            {
+                paddingBytes[i] = 0;
+            }
+
+            //填充低64位
+            for (int i = 0; i < 8; i++)
+            {
+                //这里很关键，使用小端方式，即Byte数组先存储len的低位数据，然后右移len
+                paddingBytes[56 + i] = (byte) (K & 0xFFL);
+                K = K >> 8;
+            }
+            //处理第二个尾部分组
+            H(divide(paddingBytes, 0));
+        }
+        //将Hash值转换成十六进制的字符串
+        //小端方式!
+        for (int i = 0; i < 4; i++)
+        {
+            //解决缺少前置0的问题
+            resultMessage += String.format("%02x", result[i] & 0xFF) +
+                    String.format("%02x", (result[i] & 0xFF00) >> 8) +
+                    String.format("%02x", (result[i] & 0xFF0000) >> 16) +
+                    String.format("%02x", (result[i] & 0xFF000000) >> 24);
+
+        }
+        return resultMessage;
+    }
+
+    //从inputBytes的index开始取512位，作为新的512bit的分组
+    private static long[] divide(byte[] inputBytes, int start)
+    {
+        //存储一整个分组,就是512bit,数组里每个是32bit，就是4字节，为了消除符号位的影响，所以使用long
+        long[] group = new long[16];
+        for (int i = 0; i < 16; i++)
+        {
+            //每个32bit由4个字节拼接而来
+            //小端的从byte数组到bit恢复方法
+            group[i] = byte2unsign(inputBytes[4 * i + start]) |
+                    (byte2unsign(inputBytes[4 * i + 1 + start])) << 8 |
+                    (byte2unsign(inputBytes[4 * i + 2 + start])) << 16 |
+                    (byte2unsign(inputBytes[4 * i + 3 + start])) << 24;
+        }
+        return group;
+    }
+
+    //其实byte相当于一个字节的有符号整数，这里不需要符号位，所以把符号位去掉
+    private static long byte2unsign(byte b)
+    {
+        return b < 0 ? b & 0x7F + 128 : b;
+    }
+
+    // groups[] 中每一个分组512位（64字节）
+    // MD5压缩函数
+    private void H(long[] groups)
+    {
+        //缓冲区（寄存器）数组
+        long a = result[0], b = result[1], c = result[2], d = result[3];
+        //四轮循环
+        for (int n = 0; n < 4; n++)
+        {
+            //16轮迭代
+            for (int i = 0; i < 16; i++)
+            {
+                result[0] += (g(n, result[1], result[2], result[3]) & 0xFFFFFFFFL) + groups[k[n][i]] + T[n][i];
+                result[0] = result[1] + ((result[0] & 0xFFFFFFFFL) << S[n][i % 4] | ((result[0] & 0xFFFFFFFFL) >>> (32 - S[n][i % 4])));
+                //循环轮换
+                long temp = result[3];
+                result[3] = result[2];
+                result[2] = result[1];
+                result[1] = result[0];
+                result[0] = temp;
+            }
+        }
+        //加入之前计算的结果
+        result[0] += a;
+        result[1] += b;
+        result[2] += c;
+        result[3] += d;
+        //防止溢出
+        for (int n = 0; n < 4; n++)
+        {
+            result[n] &= 0xFFFFFFFFL;
+        }
+    }
+
+    public static String getMD5(String message)
+    {
+        String result = "";
+        MD5 md5 = new MD5();
+        result = md5.start(message);
+        md5 = null;
+        return result;
+    }
+
+    public static String getMD5toUpperCase(String message)
+    {
+        String result = "";
+        MD5 md5 = new MD5();
+        md5.start(message);
+        result = md5.resultMessage.toUpperCase();
+        md5 = null;
+        return result;
+    }
+}
+
+�
+H:\����\��������\�����ļ���������ѧ����Ϣ����ϵͳ\\src\\main\\java\\SHA\\SHA3_512.java
+package SHA;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+/**
+ * Project name(项目名称)：基于文件对象流的学生信息管理系统
+ * Package(包名): SHA
+ * Class(类名): SHA3_512
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2021/11/25
+ * Time(创建时间)： 21:38
+ * Version(版本): 1.0
+ * Description(描述)： 散列算法 SHA3_512
+ */
+
+public class SHA3_512
+{
+    private static String SHA(final String strText)
+    {
+        String strResult = null;
+        if (strText != null && strText.length() > 0)
+        {
+            try
+            {
+                MessageDigest messageDigest = MessageDigest.getInstance("SHA3-512");
+                messageDigest.update(strText.getBytes());
+                byte[] byteBuffer = messageDigest.digest();
+                StringBuilder strHexString = new StringBuilder();
+                for (int i = 0; i < byteBuffer.length; i++)
+                {
+                    String hex = Integer.toHexString(0xff & byteBuffer[i]);
+                    if (hex.length() == 1)
+                    {
+                        strHexString.append('0');
+                    }
+                    strHexString.append(hex);
+                }
+                strResult = strHexString.toString();
+            }
+            catch (NoSuchAlgorithmException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        return strResult;
+    }
+
+    public static String getSHA3_512(String strText)
+    {
+        return SHA(strText);
+    }
+
+    public static String getSHA3_512toUpperCase(String strText)
+    {
+        return SHA(strText).toUpperCase();
+    }
+}
+
+�
+H:\����\��������\�����ļ���������ѧ����Ϣ����ϵͳ\\src\\main\\java\\SHA\\Unit_Test.java
+package SHA;
+
+/**
+ * Project name(项目名称)：基于文件对象流的学生信息管理系统
+ * Package(包名): SHA
+ * Class(类名): Unit_Test
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2021/11/26
+ * Time(创建时间)： 17:06
+ * Version(版本): 1.0
+ * Description(描述)： 无
+ */
+
+public class Unit_Test
+{
+    public static void main(String[] args)
+    {
+        String s1;
+        s1 = MD5.getMD5("123");
+        System.out.println(s1);
+        s1 = MD5.getMD5toUpperCase("123");
+        System.out.println(s1);
+        s1=SHA3_512.getSHA3_512("123");
+        System.out.println(s1);
+        s1=SHA3_512.getSHA3_512toUpperCase("123");
+        System.out.println(s1);
+    }
+}
+�

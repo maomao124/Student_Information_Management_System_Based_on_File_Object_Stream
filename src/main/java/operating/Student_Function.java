@@ -15,18 +15,20 @@ package operating;
 
 public interface Student_Function
 {
-    public void insert();
+    public void insert();         //插入
 
-    public void display();
+    public void display();        //显示
 
-    public void global_search();
+    public void global_search();   //全局搜索
 
-    public void alter();
+    public void alter();           //修改
 
-    public void delete();
+    public void delete();          //删除
 
-    public void sort();
+    public void sort();            //排序
 
-    public void changePassword();
+    public void changePassword();   //更改密码
+
+    public void search();          //分类搜索
 
 }

@@ -4,6 +4,9 @@ import data.Configuration;
 import data.Student;
 
 import java.awt.*;
+import java.io.Console;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 /**
@@ -21,10 +24,22 @@ import java.util.Scanner;
 
 public class Function implements Student_Function
 {
-    public static Configuration config;
+    public static Configuration config;               //配置文件的类的对象
+    private static boolean isAdministrator;           //是否为管理员身份，是为true，否为false
 
-    private static long startTime;
-    private static long endTime;
+    private static long startTime;                     //开始时间
+    @SuppressWarnings("all")
+    private static long endTime;                       //结束时间
+
+    public static boolean isIsAdministrator()
+    {
+        return isAdministrator;
+    }
+
+    public static void setIsAdministrator(boolean isAdministrator)
+    {
+        Function.isAdministrator = isAdministrator;
+    }
 
     public static void start()
     {
@@ -1034,6 +1049,7 @@ public class Function implements Student_Function
             String new_address;
             System.out.print("请输入新的家庭地址：");
             new_address = input.next();
+            student.setAddress(new_address);
             System.out.println("修改成功，新数据如下：");
             System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
                     student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
@@ -1049,17 +1065,391 @@ public class Function implements Student_Function
     @Override
     public void delete()             //删除
     {
-
+        Scanner input = new Scanner(System.in);
+        long no;
+        //控制台输入变量:no
+        int errCount = 0;
+        while (true)
+        {
+            try
+            {
+                //min:0
+                //max:999999999999999999
+                System.out.print("请输入要删除的学生的学号：");
+                no = input.nextLong();
+                if (no >= 0 && no <= 999999999999999999L)
+                {
+                    break;
+                }
+                else
+                {
+                    errCount++;
+                    Toolkit.getDefaultToolkit().beep();
+                    if (errCount > 10)
+                    {
+                        System.err.println("错误次数过多！！！退出");
+                        System.exit(1);
+                    }
+                    System.out.println("输入的数据不在范围内! 范围：[0,999999999999999999]");
+                }
+            }
+            catch (Exception e)
+            {
+                errCount++;
+                if (errCount > 5)
+                {
+                    Toolkit.getDefaultToolkit().beep();
+                    System.err.println("错误次数过多！！！退出");
+                    System.exit(1);
+                }
+                else
+                {
+                    Toolkit.getDefaultToolkit().beep();
+                    System.out.println("输入错误！！！请重新输入！");
+                    input.nextLine();
+                }
+            }
+        }
+        Student student = null;
+        int index = -1;
+        for (int i = 0; i < Configuration.list.size(); i++)
+        {
+            student = data.Configuration.list.get(i);
+            if (student.getNo() == no)
+            {
+                index = i;
+                break;
+            }
+        }
+        if (index == -1)
+        {
+            Toolkit.getDefaultToolkit().beep();
+            System.out.println("未找到此学生的学号");
+            return;
+        }
+        else
+        {
+            System.out.println("已找到，位于第" + index + "个位置，学生数据如下：");
+            System.out.printf("%-15s%-8s%-5s%-5s%-15s%-8s%-15s%-15s%-10s\n", student.getNo(), student.getName(),
+                    student.getSex(), student.getAge(), student.getClasses(), student.getGPA(), student.getNumber(),
+                    student.getBirthday(), student.getAddress());
+        }
+        String deleteKeyWord;
+        System.err.println("输入关键字’delete‘来删除此学生！！！ 输入其它字符串取消删除");   //此方法所在线程和主线程不在同一线程里
+        try
+        {
+            Thread.sleep(500);         //主线程进入阻塞队列500毫秒
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+        System.out.println("请输入：");
+        deleteKeyWord = input.next();
+        if (deleteKeyWord.equals("delete"))
+        {
+            Configuration.list.remove(index);        //删除
+            io.Student.write(config);                //写入
+            //// TODO: 2021/11/27 log
+        }
+        else
+        {
+            System.out.print("取消删除");
+        }
     }
 
     @Override
     public void sort()
     {
-
+        System.out.println("""
+                1.按学号升序               2.按学号降序
+                3.按名字升序               4.按名字降序
+                5.按性别升序               6.按性别降序
+                7.按年龄升序               8.按年龄降序
+                9.按所在班级升序           10按所在班级降序
+                11.按平均学分绩点升序       12.按平均学号绩点降序
+                13.按电话号码升序          14.按电话号码降序
+                15.按生日升序             16.按生日降序
+                17.按家庭地址升序          18.按家庭地址降序""");
+        Scanner input = new Scanner(System.in);
+        int serialNumber;
+        //控制台输入变量:serialNumber
+        int errCount = 0;
+        while (true)
+        {
+            try
+            {
+                //min:1
+                //max:18
+                System.out.print("请输入序号：");
+                serialNumber = input.nextInt();
+                if (serialNumber >= 1 && serialNumber <= 18)
+                {
+                    break;
+                }
+                else
+                {
+                    errCount++;
+                    Toolkit.getDefaultToolkit().beep();
+                    if (errCount > 10)
+                    {
+                        System.err.println("错误次数过多！！！退出");
+                        System.exit(1);
+                    }
+                    System.out.println("输入的数据不在范围内! 范围：[1,18]");
+                }
+            }
+            catch (Exception e)
+            {
+                errCount++;
+                if (errCount > 5)
+                {
+                    Toolkit.getDefaultToolkit().beep();
+                    System.err.println("错误次数过多！！！退出");
+                    System.exit(1);
+                }
+                else
+                {
+                    Toolkit.getDefaultToolkit().beep();
+                    System.out.println("输入错误！！！请重新输入！");
+                    input.nextLine();
+                }
+            }
+        }
+        if (serialNumber == 1)         //按学号升序
+        {
+            //对象集合排序方法1
+            //使用Collections集合工具类进行排序
+            Configuration.list.sort(new Comparator<Student>()
+            {
+                @Override
+                public int compare(Student stu1, Student stu2)
+                {
+                    //升序排序
+                    return (int) (stu1.getNo() - stu2.getNo());
+                }
+            });
+            System.out.println("排序完成！结果如下：");
+            this.display();            //显示
+            io.Student.write(config);
+        }
+        else if (serialNumber == 2)      //按学号降序
+        {
+            //方法2
+            //lambda表达式
+            Collections.sort(data.Configuration.list, (student1, student2) -> (int) (student2.getNo() - student1.getNo()));
+            System.out.println("排序完成！结果如下：");
+            this.display();            //显示
+            io.Student.write(config);
+        }
+        else if (serialNumber == 3)              //按姓名升序
+        {
+            //使用Collections集合工具类进行排序，字符串操作
+            Configuration.list.sort(new Comparator<Student>()
+            {
+                @Override
+                public int compare(Student stu1, Student stu2)
+                {
+                    //升序排序
+                    return stu1.getName().compareTo(stu2.getName());
+                }
+            });
+            System.out.println("排序完成！结果如下：");
+            this.display();            //显示
+            io.Student.write(config);
+        }
+        else if (serialNumber == 4)              //按姓名降序
+        {
+            //lambda表达式 ,字符串操作
+            Configuration.list.sort((student1, student2) ->
+                    (student2.getName().compareTo(student1.getName())));
+            System.out.println("排序完成！结果如下：");
+            this.display();            //显示
+            io.Student.write(config);
+        }
+        else if (serialNumber == 5)             //按性别升序
+        {
+            Collections.sort(Configuration.list, Comparator.comparing(Student::getSex));
+            System.out.println("排序完成！结果如下：");
+            this.display();            //显示
+            io.Student.write(config);
+        }
+        else if (serialNumber == 6)            //按性别降序
+        {
+            Collections.sort(Configuration.list, (student1, student2) -> student2.getSex().compareTo(student1.getSex()));
+            System.out.println("排序完成！结果如下：");
+            this.display();            //显示
+            io.Student.write(config);
+        }
+        else if (serialNumber == 7)              //按年龄升序
+        {
+            Collections.sort(Configuration.list, (student1, student2) -> student1.getAge() - student2.getAge());
+            System.out.println("排序完成！结果如下：");
+            this.display();            //显示
+            io.Student.write(config);
+        }
+        else if (serialNumber == 8)             //按年龄降序
+        {
+            Collections.sort(Configuration.list, (student1, student2) -> student2.getAge() - student1.getAge());
+            System.out.println("排序完成！结果如下：");
+            this.display();            //显示
+            io.Student.write(config);
+        }
+        else if (serialNumber == 9)             //按所在班级升序
+        {
+            Collections.sort(Configuration.list, (student1, student2) ->
+                    student1.getClasses().compareTo(student2.getClasses()));
+            System.out.println("排序完成！结果如下：");
+            this.display();            //显示
+            io.Student.write(config);
+        }
+        else if (serialNumber == 10)             //按所在班级降序
+        {
+            Collections.sort(Configuration.list, (student1, student2) ->
+                    student2.getClasses().compareTo(student1.getClasses()));
+            System.out.println("排序完成！结果如下：");
+            this.display();            //显示
+            io.Student.write(config);
+        }
+        else if (serialNumber == 11)              //按平均学分绩点升序
+        {
+            Configuration.list.sort(new Comparator<Student>()
+            {
+                @Override
+                public int compare(Student student1, Student student2)
+                {
+                    //升序排序
+                    //可以使用Float.compare(student1.getGPA(), student2.getGPA());
+                    if (student1.getGPA() < student2.getGPA())
+                    {
+                        return -1;
+                    }
+                    else if (student1.getGPA() > student2.getGPA())
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            });
+            System.out.println("排序完成！结果如下：");
+            this.display();            //显示
+            io.Student.write(config);
+        }
+        else if (serialNumber == 12)              //按平均学分绩点降序
+        {
+            Configuration.list.sort(new Comparator<Student>()
+            {
+                @Override
+                public int compare(Student student1, Student student2)
+                {
+                    //升序排序
+                    //可以使用Float.compare(student2.getGPA(), student1.getGPA());
+                    if (student1.getGPA() < student2.getGPA())
+                    {
+                        return 1;
+                    }
+                    else if (student1.getGPA() > student2.getGPA())
+                    {
+                        return -1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            });
+            System.out.println("排序完成！结果如下：");
+            this.display();            //显示
+            io.Student.write(config);
+        }
+        else if (serialNumber == 13)             //按电话号码升序
+        {
+            Collections.sort(Configuration.list, (student1, student2) ->
+                    student1.getNumber().compareTo(student2.getNumber()));
+            System.out.println("排序完成！结果如下：");
+            this.display();            //显示
+            io.Student.write(config);
+        }
+        else if (serialNumber == 14)             //按电话号码降序
+        {
+            Collections.sort(Configuration.list, (student1, student2) ->
+                    student2.getNumber().compareTo(student1.getNumber()));
+            System.out.println("排序完成！结果如下：");
+            this.display();            //显示
+            io.Student.write(config);
+        }
+        else if (serialNumber == 15)             //按生日升序
+        {
+            Collections.sort(Configuration.list, (student1, student2) ->
+                    student1.getBirthday().compareTo(student2.getBirthday()));
+            System.out.println("排序完成！结果如下：");
+            this.display();            //显示
+            io.Student.write(config);
+        }
+        else if (serialNumber == 16)             //按生日升序
+        {
+            Collections.sort(Configuration.list, (student1, student2) ->
+                    student2.getBirthday().compareTo(student1.getBirthday()));
+            System.out.println("排序完成！结果如下：");
+            this.display();            //显示
+            io.Student.write(config);
+        }
+        else if (serialNumber == 17)             //按家庭地址升序
+        {
+            Collections.sort(Configuration.list, (student1, student2) ->
+                    student1.getAddress().compareTo(student2.getAddress()));
+            System.out.println("排序完成！结果如下：");
+            this.display();            //显示
+            io.Student.write(config);
+        }
+        else if (serialNumber == 18)             //按家庭地址降序
+        {
+            Collections.sort(Configuration.list, (student1, student2) ->
+                    student2.getAddress().compareTo(student1.getAddress()));
+            System.out.println("排序完成！结果如下：");
+            this.display();            //显示
+            io.Student.write(config);
+        }
     }
 
     @Override
     public void changePassword()
+    {
+        System.out.println("请输入原密码：");
+        String password;
+        Console console = System.console();
+        if (console == null)
+        {
+            Scanner input = new Scanner(System.in);
+            password = input.next();
+            System.out.println("密码:" + password);
+        }
+        else
+        {
+            password = new String(console.readPassword());
+            System.out.println("密码:" + password);
+        }
+        //密码验证
+        String password_SHA3_512;
+        password_SHA3_512 = SHA.SHA3_512.getSHA3_512(password);
+        if (config.getPassword_SHA3_512().equals(password_SHA3_512))
+        {
+            System.out.println("密码输入正确");
+            config.setPassword_SHA3_512(password_SHA3_512);        //写入配置类
+            io.Configuration.write(config);                       //写入配置文件
+            System.out.println("密码已更新");
+        }
+        else
+        {
+            System.out.println("密码输入错误");
+        }
+    }
+
+    @Override
+    public void search()
     {
 
     }
