@@ -1,5 +1,6 @@
 package operating;
 
+import SHA.SHA3_512;
 import data.Configuration;
 import data.Student;
 
@@ -1213,12 +1214,13 @@ public class Function implements Student_Function
         }
         else
         {
-            System.out.print("取消删除");
+            System.out.println("取消删除");
         }
         end("删除");
     }
 
     @Override
+    @SuppressWarnings("all")
     public void sort()
     {
         if (Configuration.list.size() == 0)
@@ -1884,21 +1886,33 @@ public class Function implements Student_Function
         {
             Scanner input = new Scanner(System.in);
             password = input.next();
-            System.out.println("密码:" + password);
         }
         else
         {
             password = new String(console.readPassword());
-            System.out.println("密码:" + password);
         }
         //密码验证
         String password_SHA3_512;
         password_SHA3_512 = SHA.SHA3_512.getSHA3_512(password);
         if (config.getPassword_SHA3_512().equals(password_SHA3_512))
         {
-            System.out.println("密码输入正确");
-            config.setPassword_SHA3_512(password_SHA3_512);        //写入配置类
+            System.out.println("请输入新密码：");
+            String new_password;
+            String new_password_SHA3_512;
+            if (console == null)
+            {
+                Scanner input = new Scanner(System.in);
+                new_password = input.next();
+            }
+            else
+            {
+                new_password = new String(console.readPassword());
+            }
+            System.out.println("密码输入正确,  新密码为"+new_password);
+            new_password_SHA3_512= SHA3_512.getSHA3_512(new_password);
+            config.setPassword_SHA3_512(new_password_SHA3_512);    //写入配置类
             io.Configuration.write(config);                       //写入配置文件
+            io.MD5.write();                                       //同步
             System.out.println("密码已更新");
             if (isIsAdministrator())             //管理员
             {

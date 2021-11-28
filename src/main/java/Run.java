@@ -1,6 +1,4 @@
-import data.Configuration;
 import operating.Function;
-import operating.LifeCycle;
 
 import java.awt.*;
 import java.io.Console;
@@ -20,6 +18,7 @@ import java.util.Scanner;
  * Description(描述)： 无
  */
 
+@SuppressWarnings("all")
 public class Run
 {
     public static void main(String[] args)        //程序入口点
@@ -69,6 +68,7 @@ public class Run
             Toolkit.getDefaultToolkit().beep();
             System.out.println("文件MD5值不一致，数据文件或者配置文件被修改！！！");
             System.out.println("是否重置？");
+            System.out.println("1.重置       2.不重置");
             System.out.print("请输入：");
             String serialNumber;
             serialNumber = input.next();

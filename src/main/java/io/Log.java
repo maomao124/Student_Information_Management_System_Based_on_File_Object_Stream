@@ -18,6 +18,7 @@ import java.util.Calendar;
  * Description(描述)： 日志类
  */
 
+@SuppressWarnings("all")
 public class Log
 {
     private static final DecimalFormat decimalFormat1 = new DecimalFormat("00");
