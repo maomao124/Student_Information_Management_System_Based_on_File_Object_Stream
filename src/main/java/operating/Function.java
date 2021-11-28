@@ -511,6 +511,11 @@ public class Function implements Student_Function
     @Override
     public void global_search()
     {
+        if (Configuration.list.size() == 0)
+        {
+            System.out.println("空");
+            return;
+        }
         String keyword;
         Scanner input = new Scanner(System.in);
         System.out.print("请输入搜索关键字：");
@@ -547,6 +552,11 @@ public class Function implements Student_Function
     @Override
     public void alter()
     {
+        if (Configuration.list.size() == 0)
+        {
+            System.out.println("空");
+            return;
+        }
         Scanner input = new Scanner(System.in);
         long no;
         //控制台输入变量:no
@@ -1211,6 +1221,11 @@ public class Function implements Student_Function
     @Override
     public void sort()
     {
+        if (Configuration.list.size() == 0)
+        {
+            System.out.println("空");
+            return;
+        }
         System.out.println("""
                 1.按学号升序               2.按学号降序
                 3.按名字升序               4.按名字降序
@@ -1904,6 +1919,11 @@ public class Function implements Student_Function
     @Override
     public void search()
     {
+        if (Configuration.list.size() == 0)
+        {
+            System.out.println("空");
+            return;
+        }
         Scanner input = new Scanner(System.in);
         System.out.println("""
                 1.搜索学号       2.搜索姓名     3.搜索性别

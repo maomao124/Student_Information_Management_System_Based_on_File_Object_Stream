@@ -100,6 +100,7 @@ public class LifeCycle
             {
                 function.insert();
                 System.out.print("按回车键继续");
+                input.nextLine();           //第一个是因为要清除之前输入的回车
                 input.nextLine();
             }
             else if (serialNumber == 2)       //查看学生信息
@@ -107,11 +108,13 @@ public class LifeCycle
                 function.display();
                 System.out.print("按回车键继续");
                 input.nextLine();
+                input.nextLine();
             }
             else if (serialNumber == 3)        //全局搜索
             {
                 function.global_search();
                 System.out.print("按回车键继续");
+                input.nextLine();
                 input.nextLine();
             }
             else if (serialNumber == 4)         //分类搜索
@@ -119,11 +122,13 @@ public class LifeCycle
                 function.search();
                 System.out.print("按回车键继续");
                 input.nextLine();
+                input.nextLine();
             }
             else if (serialNumber == 5)        //修改学生信息
             {
                 function.alter();
                 System.out.print("按回车键继续");
+                input.nextLine();
                 input.nextLine();
             }
             else if (serialNumber == 6)        //删除信息
@@ -131,11 +136,13 @@ public class LifeCycle
                 function.delete();
                 System.out.print("按回车键继续");
                 input.nextLine();
+                input.nextLine();
             }
             else if (serialNumber == 7)        //排序
             {
                 function.sort();
                 System.out.print("按回车键继续");
+                input.nextLine();
                 input.nextLine();
             }
             else if (serialNumber == 8)        //更改密码
@@ -143,11 +150,13 @@ public class LifeCycle
                 function.changePassword();
                 System.out.print("按回车键继续");
                 input.nextLine();
+                input.nextLine();
             }
             else if (serialNumber == 9)        //查看日志
             {
                 io.Log.display();
                 System.out.print("按回车键继续");
+                input.nextLine();
                 input.nextLine();
             }
             else                              //退出
@@ -216,11 +225,13 @@ public class LifeCycle
                 function.display();
                 System.out.print("按回车键继续");
                 input.nextLine();
+                input.nextLine();
             }
             else if (serialNumber == 2)        //全局搜索
             {
                 function.global_search();
                 System.out.print("按回车键继续");
+                input.nextLine();
                 input.nextLine();
             }
             else if (serialNumber == 3)         //分类搜索
@@ -228,11 +239,13 @@ public class LifeCycle
                 function.search();
                 System.out.print("按回车键继续");
                 input.nextLine();
+                input.nextLine();
             }
             else if (serialNumber == 4)        //排序
             {
                 function.sort();
                 System.out.print("按回车键继续");
+                input.nextLine();
                 input.nextLine();
             }
             else                              //退出
