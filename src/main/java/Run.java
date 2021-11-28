@@ -22,7 +22,7 @@ import java.util.Scanner;
 
 public class Run
 {
-    public static void main(String[] args)
+    public static void main(String[] args)        //程序入口点
     {
         File file1 = new File("Student.dat");
         File file2 = new File("Configuration.ini");

@@ -267,7 +267,7 @@ public class Function implements Student_Function
         //电话号码
         while (true)
         {
-            System.out.print("请输入新的电话号码：");
+            System.out.print("请输入电话号码：");
             number = input.next();
             if (number.length() >= 12)
             {
