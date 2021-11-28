@@ -76,7 +76,7 @@ public class LifeCycle
                             System.err.println("错误次数过多！！！退出");
                             System.exit(1);
                         }
-                        System.out.println("输入的数据不在范围内! 范围：[1,9]");
+                        System.out.println("输入的数据不在范围内! 范围：[1,10]");
                     }
                 }
                 catch (Exception e)
