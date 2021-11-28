@@ -541,6 +541,7 @@ import java.util.Calendar;
  * Description(描述)： 日志类
  */
 
+@SuppressWarnings("all")
 public class Log
 {
     private static final DecimalFormat decimalFormat1 = new DecimalFormat("00");
@@ -1065,6 +1066,7 @@ public class Unit_Test
 H:\����\��������\�����ļ���������ѧ����Ϣ����ϵͳ\\src\\main\\java\\operating\\Function.java
 package operating;
 
+import SHA.SHA3_512;
 import data.Configuration;
 import data.Student;
 
@@ -1332,7 +1334,7 @@ public class Function implements Student_Function
         //电话号码
         while (true)
         {
-            System.out.print("请输入新的电话号码：");
+            System.out.print("请输入电话号码：");
             number = input.next();
             if (number.length() >= 12)
             {
@@ -1576,6 +1578,11 @@ public class Function implements Student_Function
     @Override
     public void global_search()
     {
+        if (Configuration.list.size() == 0)
+        {
+            System.out.println("空");
+            return;
+        }
         String keyword;
         Scanner input = new Scanner(System.in);
         System.out.print("请输入搜索关键字：");
@@ -1612,6 +1619,11 @@ public class Function implements Student_Function
     @Override
     public void alter()
     {
+        if (Configuration.list.size() == 0)
+        {
+            System.out.println("空");
+            return;
+        }
         Scanner input = new Scanner(System.in);
         long no;
         //控制台输入变量:no
@@ -2268,14 +2280,20 @@ public class Function implements Student_Function
         }
         else
         {
-            System.out.print("取消删除");
+            System.out.println("取消删除");
         }
         end("删除");
     }
 
     @Override
+    @SuppressWarnings("all")
     public void sort()
     {
+        if (Configuration.list.size() == 0)
+        {
+            System.out.println("空");
+            return;
+        }
         System.out.println("""
                 1.按学号升序               2.按学号降序
                 3.按名字升序               4.按名字降序
@@ -2934,21 +2952,33 @@ public class Function implements Student_Function
         {
             Scanner input = new Scanner(System.in);
             password = input.next();
-            System.out.println("密码:" + password);
         }
         else
         {
             password = new String(console.readPassword());
-            System.out.println("密码:" + password);
         }
         //密码验证
         String password_SHA3_512;
         password_SHA3_512 = SHA.SHA3_512.getSHA3_512(password);
         if (config.getPassword_SHA3_512().equals(password_SHA3_512))
         {
-            System.out.println("密码输入正确");
-            config.setPassword_SHA3_512(password_SHA3_512);        //写入配置类
+            System.out.println("请输入新密码：");
+            String new_password;
+            String new_password_SHA3_512;
+            if (console == null)
+            {
+                Scanner input = new Scanner(System.in);
+                new_password = input.next();
+            }
+            else
+            {
+                new_password = new String(console.readPassword());
+            }
+            System.out.println("密码输入正确,  新密码为"+new_password);
+            new_password_SHA3_512= SHA3_512.getSHA3_512(new_password);
+            config.setPassword_SHA3_512(new_password_SHA3_512);    //写入配置类
             io.Configuration.write(config);                       //写入配置文件
+            io.MD5.write();                                       //同步
             System.out.println("密码已更新");
             if (isIsAdministrator())             //管理员
             {
@@ -2969,6 +2999,11 @@ public class Function implements Student_Function
     @Override
     public void search()
     {
+        if (Configuration.list.size() == 0)
+        {
+            System.out.println("空");
+            return;
+        }
         Scanner input = new Scanner(System.in);
         System.out.println("""
                 1.搜索学号       2.搜索姓名     3.搜索性别
@@ -3707,6 +3742,7 @@ public class LifeCycle
             {
                 function.insert();
                 System.out.print("按回车键继续");
+                input.nextLine();           //第一个是因为要清除之前输入的回车
                 input.nextLine();
             }
             else if (serialNumber == 2)       //查看学生信息
@@ -3714,11 +3750,13 @@ public class LifeCycle
                 function.display();
                 System.out.print("按回车键继续");
                 input.nextLine();
+                input.nextLine();
             }
             else if (serialNumber == 3)        //全局搜索
             {
                 function.global_search();
                 System.out.print("按回车键继续");
+                input.nextLine();
                 input.nextLine();
             }
             else if (serialNumber == 4)         //分类搜索
@@ -3726,11 +3764,13 @@ public class LifeCycle
                 function.search();
                 System.out.print("按回车键继续");
                 input.nextLine();
+                input.nextLine();
             }
             else if (serialNumber == 5)        //修改学生信息
             {
                 function.alter();
                 System.out.print("按回车键继续");
+                input.nextLine();
                 input.nextLine();
             }
             else if (serialNumber == 6)        //删除信息
@@ -3738,11 +3778,13 @@ public class LifeCycle
                 function.delete();
                 System.out.print("按回车键继续");
                 input.nextLine();
+                input.nextLine();
             }
             else if (serialNumber == 7)        //排序
             {
                 function.sort();
                 System.out.print("按回车键继续");
+                input.nextLine();
                 input.nextLine();
             }
             else if (serialNumber == 8)        //更改密码
@@ -3750,11 +3792,13 @@ public class LifeCycle
                 function.changePassword();
                 System.out.print("按回车键继续");
                 input.nextLine();
+                input.nextLine();
             }
             else if (serialNumber == 9)        //查看日志
             {
                 io.Log.display();
                 System.out.print("按回车键继续");
+                input.nextLine();
                 input.nextLine();
             }
             else                              //退出
@@ -3823,11 +3867,13 @@ public class LifeCycle
                 function.display();
                 System.out.print("按回车键继续");
                 input.nextLine();
+                input.nextLine();
             }
             else if (serialNumber == 2)        //全局搜索
             {
                 function.global_search();
                 System.out.print("按回车键继续");
+                input.nextLine();
                 input.nextLine();
             }
             else if (serialNumber == 3)         //分类搜索
@@ -3835,11 +3881,13 @@ public class LifeCycle
                 function.search();
                 System.out.print("按回车键继续");
                 input.nextLine();
+                input.nextLine();
             }
             else if (serialNumber == 4)        //排序
             {
                 function.sort();
                 System.out.print("按回车键继续");
+                input.nextLine();
                 input.nextLine();
             }
             else                              //退出
@@ -3962,7 +4010,10 @@ class InputTest
 }
 �
 H:\����\��������\�����ļ���������ѧ����Ϣ����ϵͳ\\src\\main\\java\\Run.java
+import operating.Function;
+
 import java.awt.*;
+import java.io.Console;
 import java.io.File;
 import java.util.Scanner;
 
@@ -3979,9 +4030,10 @@ import java.util.Scanner;
  * Description(描述)： 无
  */
 
+@SuppressWarnings("all")
 public class Run
 {
-    public static void main(String[] args)
+    public static void main(String[] args)        //程序入口点
     {
         File file1 = new File("Student.dat");
         File file2 = new File("Configuration.ini");
@@ -4007,6 +4059,11 @@ public class Run
             {
                 System.exit(1);
             }
+            else if (serialNumber.equals("3"))
+            {
+                System.out.println("再见！！！");
+                System.exit(1);
+            }
             else
             {
                 Toolkit.getDefaultToolkit().beep();
@@ -4015,12 +4072,117 @@ public class Run
             }
         }
         //// TODO: 老用户，验证MD5值
-
-        //TODO:通过散列算法验证用户和密码
-
-        //todo:加载配置文件和dat文件写入内存
-
+        boolean result;                   //检验是否被修改
+        result = io.MD5.verification();
+        if (!result)                //不通过，被修改
+        {
+            Scanner input = new Scanner(System.in);
+            Toolkit.getDefaultToolkit().beep();
+            System.out.println("文件MD5值不一致，数据文件或者配置文件被修改！！！");
+            System.out.println("是否重置？");
+            System.out.println("1.重置       2.不重置");
+            System.out.print("请输入：");
+            String serialNumber;
+            serialNumber = input.next();
+            if (serialNumber.equals("1"))        //重置
+            {
+                operating.Function.Welcome();
+            }
+            else if (serialNumber.equals("2"))
+            {
+                System.exit(1);
+            }
+            else
+            {
+                Toolkit.getDefaultToolkit().beep();
+                System.out.println("输入错误！！！ 退出！");
+                System.exit(1);
+            }
+        }
+        //通过
+        //加载配置文件
+        Function.config = io.Configuration.read();
+        //TODO:通过散列算法验证用户
+        String username_MD5;
+        username_MD5 = SHA.MD5.getMD5(System.getProperty("user.name"));
+        if (!username_MD5.equals(Function.config.getUsername_MD5()))       //用户名不一致，使用其它用户的文件
+        {
+            Toolkit.getDefaultToolkit().beep();
+            System.out.println("用户名不一致！！！ 当前登录用户：" + System.getProperty("user.name"));
+            System.exit(1);
+        }
+        //用户通过
+        //todo:加载dat文件写入内存
+        io.Student.read(Function.config);
+        //todo：用户输入2种模式
+        boolean isAdministrator = false;             //是否为管理员
+        System.out.println("请输入登录方式");
+        System.out.println("1.管理员登录        2.访客登录       3.退出");
+        System.out.print("请输入序号：");
+        Scanner input = new Scanner(System.in);
+        String serialNumber = input.next();
+        if (serialNumber.equals("1"))
+        {
+            isAdministrator = true;
+        }
+        else if (serialNumber.equals("2"))
+        {
+            isAdministrator = false;
+        }
+        else
+        {
+            Toolkit.getDefaultToolkit().beep();
+            System.out.println("输入错误！！！自动退出！");
+            System.exit(1);
+        }
+        //TODO:如果管理员，通过散列算法验证密码
+        if (isAdministrator)
+        {
+            int errCount = 0;
+            String password;
+            String password_SHA3_512;
+            Console console = System.console();
+            while (true)
+            {
+                if (errCount > 3)
+                {
+                    System.out.println("错误次数过多！！！，退出！");
+                    System.exit(1);
+                }
+                System.out.print("请输入密码：");
+                if (console == null)
+                {
+                    password = input.next();
+                }
+                else
+                {
+                    password = new String(console.readPassword());
+                }
+                //密码验证
+                password_SHA3_512 = SHA.SHA3_512.getSHA3_512(password);
+                if (password_SHA3_512.equals(Function.config.getPassword_SHA3_512()))      //密码正确
+                {
+                    System.out.println("密码正确");
+                    break;        //退出循环
+                }
+                else
+                {
+                    Toolkit.getDefaultToolkit().beep();
+                    System.out.println("密码错误！！！");
+                }
+                errCount++;
+            }
+        }
         //todo：初始化完成，进入程序生命周期
+        if (isAdministrator)            //进入管理员循环
+        {
+            operating.LifeCycle.Administrator();
+        }
+        else
+        {
+            operating.LifeCycle.Guest();  //访客
+        }
+        //退出
     }
 }
 �
